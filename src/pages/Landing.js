@@ -1,5 +1,5 @@
-import logo from '../assets/images/logo.svg';
 import main from '../assets/images/main.svg';
+import { Logo } from '../components';
 
 import Wrapper from '../styledWrappers/Landing';
 
@@ -7,7 +7,7 @@ const Landing = () => {
   return (
     <Wrapper>
       <nav>
-        <img src={logo} alt="Tus Finanzas" className="logo" />
+        <Logo />
       </nav>
       <div className="container page">
         <div className="info">
@@ -20,7 +20,7 @@ const Landing = () => {
             el dinero se te siga escapando de las manos, regístrate y empieza a
             darle rienda a tus finanzas.
           </p>
-          <button className='btn btn-hero'>Iniciar Sesión/Registrarse</button>
+          <button className="btn btn-hero">Iniciar Sesión/Registrarse</button>
         </div>
         <img src={main} alt="Tus Finanzas" className="img main-img" />
       </div>
