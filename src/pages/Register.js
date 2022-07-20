@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { Logo } from '../components';
+import { Logo, FormRow } from '../components';
 import Wrapper from '../styledWrappers/Register';
 
 const initialState = {
@@ -28,17 +28,8 @@ function Register() {
       <form className="form" onSubmit={onSubmit}>
       <Logo />
       <h3>Iniciar sesión</h3>
-      <div className="form-row">
-        <label htmlFor='name' className='form-label'>Nombre</label>
-        <input
-          type='text'
-          id='name'
-          name='name'
-          className='form-input'
-          onChange={handleChange}
-          value={values.name}
-        />
-      </div>
+      <FormRow type="email" name="email" value={values.email} handleChange={handleChange} labelText="Email" />
+      <FormRow type="password" name="password" value={values.password} handleChange={handleChange} labelText="Contraseña" />
       <button type='submit' className='btn btn-block'>Enviar</button>
       </form>
     </Wrapper>
