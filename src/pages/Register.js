@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { Logo, FormRow } from '../components';
+import { Logo, FormRow, Alert } from '../components';
 import Wrapper from '../styledWrappers/Register';
 
 const initialState = {
@@ -9,6 +9,7 @@ const initialState = {
   email: '',
   password: '',
   isLogin: true,
+  showAlert: false,
 };
 
 function Register() {
@@ -27,10 +28,7 @@ function Register() {
     <Wrapper className="full-page">
       <form className="form" onSubmit={onSubmit}>
       <Logo />
-      <h3>Iniciar sesión</h3>
-      <FormRow type="email" name="email" value={values.email} handleChange={handleChange} labelText="Email" />
-      <FormRow type="password" name="password" value={values.password} handleChange={handleChange} labelText="Contraseña" />
-      <button type='submit' className='btn btn-block'>Enviar</button>
+        {values.showAlert && <Alert />}
       </form>
     </Wrapper>
   );
