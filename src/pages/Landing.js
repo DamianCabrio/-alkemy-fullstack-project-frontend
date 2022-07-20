@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import main from '../assets/images/main.svg';
 import { Logo } from '../components';
 
@@ -20,7 +22,7 @@ const Landing = () => {
             el dinero se te siga escapando de las manos, regístrate y empieza a
             darle rienda a tus finanzas.
           </p>
-          <button className="btn btn-hero">Iniciar Sesión/Registrarse</button>
+          <Link to="/registro" className="btn btn-hero">Iniciar Sesión/Registrarse</Link>
         </div>
         <img src={main} alt="Tus Finanzas" className="img main-img" />
       </div>
