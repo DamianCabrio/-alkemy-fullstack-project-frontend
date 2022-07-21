@@ -15,10 +15,11 @@ const initialState = {
 function Register() {
   const [values, setValues] = useState(initialState);
 
-  const { isLoading, showAlert, displayAlert } = useAppContext();
+  const { isLoading, showAlert, displayAlert, clearAlert } = useAppContext();
 
   const toggleForms = () => {
     setValues({ ...values, isLogin: !values.isLogin });
+    clearAlert();
   };
 
   const handleChange = (e) => {
@@ -27,6 +28,7 @@ function Register() {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    clearAlert();
     const { name, surname, email, password, isLogin } = values;
 
     if (!email || !password || (!isLogin && !name && !surname)) {
