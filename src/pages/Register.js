@@ -15,19 +15,28 @@ const initialState = {
 function Register() {
   const [values, setValues] = useState(initialState);
 
-  const {isLoading, showAlert} = useAppContext();
+  const { isLoading, showAlert, displayAlert } = useAppContext();
 
   const toggleForms = () => {
     setValues({ ...values, isLogin: !values.isLogin });
   };
 
   const handleChange = (e) => {
-    console.log(e.target);
+    setValues({ ...values, [e.target.name]: e.target.value });
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target);
+    const { name, surname, email, password, isLogin } = values;
+
+    if (!email || !password || (!isLogin && !name && !surname)) {
+      displayAlert(
+        'Por favor llene todos los campos antes de enviar.',
+        'danger'
+      );
+      return;
+    }
+    console.log(values);
   };
 
   return (
@@ -42,7 +51,7 @@ function Register() {
             type="text"
             name="name"
             value={values.name}
-            onChange={handleChange}
+            handleChange={handleChange}
           />
         )}
         {!values.isLogin && (
@@ -51,7 +60,7 @@ function Register() {
             type="text"
             name="surname"
             value={values.surname}
-            onChange={handleChange}
+            handleChange={handleChange}
           />
         )}
         <FormRow
