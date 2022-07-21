@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { Logo, FormRow, Alert } from '../components';
+import { useAppContext } from '../contexts/appContext';
 import Wrapper from '../styledWrappers/Register';
 
 const initialState = {
@@ -9,15 +10,16 @@ const initialState = {
   email: '',
   password: '',
   isLogin: true,
-  showAlert: false,
 };
 
 function Register() {
   const [values, setValues] = useState(initialState);
 
+  const {isLoading, showAlert} = useAppContext();
+
   const toggleForms = () => {
     setValues({ ...values, isLogin: !values.isLogin });
-  }
+  };
 
   const handleChange = (e) => {
     console.log(e.target);
@@ -33,7 +35,7 @@ function Register() {
       <form className="form" onSubmit={onSubmit}>
         <Logo />
         <h3>{values.isLogin ? 'Iniciar sesión' : 'Registrarse'}</h3>
-        {values.showAlert && <Alert />}
+        {showAlert && <Alert />}
         {!values.isLogin && (
           <FormRow
             labelText="Nombre"
