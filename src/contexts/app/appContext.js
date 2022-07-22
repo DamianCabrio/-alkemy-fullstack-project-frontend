@@ -9,6 +9,9 @@ import {
   REGISTER_USER_BEGIN,
   REGISTER_USER_SUCCESS,
   REGISTER_USER_FAILURE,
+  LOGIN_USER_BEGIN,
+  LOGIN_USER_SUCCESS,
+  LOGIN_USER_FAILURE,
 } from './actions';
 
 const token = localStorage.getItem('token');
@@ -60,8 +63,8 @@ const AppProvider = ({ children }) => {
     });
 
     try {
-      const response = await axios.post('/api/v1/users/register', user);
-      const { user: newUser, token } = response.data.result;
+      const { data } = await axios.post('/api/v1/users/register', user);
+      const { user: newUser, token } = data.result;
       dispatch({
         type: REGISTER_USER_SUCCESS,
         payload: { user: newUser, token },
@@ -75,9 +78,30 @@ const AppProvider = ({ children }) => {
     }
   };
 
+  const loginUser = async (user) => {
+    dispatch({
+      type: LOGIN_USER_BEGIN,
+    });
+
+    try {
+      const { data } = await axios.post('/api/v1/users/login', user);
+      const { user: newUser, token } = data.result;
+      dispatch({
+        type: LOGIN_USER_SUCCESS,
+        payload: { user: newUser, token },
+      });
+      addUserToLocalStorage(newUser, token);
+    } catch (error) {
+      dispatch({
+        type: LOGIN_USER_FAILURE,
+        payload: { message: error.response.data.message },
+      });
+    }
+  };
+
   return (
     <AppContext.Provider
-      value={{ ...state, displayAlert, clearAlert, registerUser }}
+      value={{ ...state, displayAlert, clearAlert, registerUser, loginUser }}
     >
       {children}
     </AppContext.Provider>

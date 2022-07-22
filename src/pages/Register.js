@@ -17,8 +17,15 @@ function Register() {
   const navigate = useNavigate();
 
   const [values, setValues] = useState(initialState);
-  const { user, isLoading, showAlert, displayAlert, clearAlert, registerUser } =
-    useAppContext();
+  const {
+    user,
+    isLoading,
+    showAlert,
+    displayAlert,
+    clearAlert,
+    registerUser,
+    loginUser,
+  } = useAppContext();
 
   const toggleForms = () => {
     setValues({ ...values, isLogin: !values.isLogin });
@@ -41,12 +48,14 @@ function Register() {
       );
       return;
     }
-    const user = { name, surname, email, password };
+    const userObj = { name, surname, email, password };
 
     if (isLogin) {
-      console.log('login');
+      delete userObj.name;
+      delete userObj.surname;
+      loginUser(userObj);
     } else {
-      registerUser(user);
+      registerUser(userObj);
     }
   };
 
