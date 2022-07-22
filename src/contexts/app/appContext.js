@@ -1,4 +1,5 @@
 import { useReducer, useContext, createContext } from 'react';
+import axios from '../../helpers/axiosInstance';
 
 import reducer from './reducers';
 
@@ -38,7 +39,23 @@ const AppProvider = ({ children }) => {
   };
 
   const registerUser = async (user) => {
-    console.log(user);
+    dispatch({
+      type: REGISTER_USER_BEGIN,
+    });
+
+    try {
+      const response = await axios.post('/api/v1/users/register', user);
+      const { user: newUser, token } = response.data.result;
+      dispatch({
+        type: REGISTER_USER_SUCCESS,
+        payload: { user: newUser, token },
+      });
+    }catch (error) {
+      dispatch({
+        type: REGISTER_USER_FAILURE,
+        payload: { message: error.response.data.message },
+      });
+    }
   };
 
   return (

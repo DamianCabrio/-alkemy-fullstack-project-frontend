@@ -33,11 +33,15 @@ const reducer = (state = {}, action) => {
         isLoading: false,
         user: action.payload.user,
         token: action.payload.token,
+        showAlert: true,
+        alertMessage: '¡Se ha registrado con éxito! Redireccionando...',
+        alertType: 'success',
       };
     case REGISTER_USER_FAILURE:
       return {
         ...state,
         isLoading: false,
+        showAlert: true,
         alertMessage: action.payload.message,
         alertType: 'danger',
       };
