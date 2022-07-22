@@ -23,8 +23,7 @@ function Register() {
     showAlert,
     displayAlert,
     clearAlert,
-    registerUser,
-    loginUser,
+    setupUser,
   } = useAppContext();
 
   const toggleForms = () => {
@@ -53,9 +52,9 @@ function Register() {
     if (isLogin) {
       delete userObj.name;
       delete userObj.surname;
-      loginUser(userObj);
+      setupUser(userObj, 'login', `¡Bienvenido ${name}!`);
     } else {
-      registerUser(userObj);
+      setupUser(userObj, 'register', '¡Registro exitoso!');
     }
   };
 
