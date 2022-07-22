@@ -154,9 +154,13 @@ ul {
   text-transform: capitalize;
   display: inline-block;
 }
-.btn:hover {
+.btn:hover:not(:disabled) {
   background: var(--primary-700);
   box-shadow: var(--shadow-3);
+}
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 .btn-block {
   width: 100%;
