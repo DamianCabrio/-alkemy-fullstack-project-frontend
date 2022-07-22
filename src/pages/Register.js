@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Logo, FormRow, Alert } from '../components';
 import { useAppContext } from '../contexts/app/appContext';
@@ -13,9 +14,10 @@ const initialState = {
 };
 
 function Register() {
-  const [values, setValues] = useState(initialState);
+  const navigate = useNavigate();
 
-  const { isLoading, showAlert, displayAlert, clearAlert, registerUser } =
+  const [values, setValues] = useState(initialState);
+  const { user, isLoading, showAlert, displayAlert, clearAlert, registerUser } =
     useAppContext();
 
   const toggleForms = () => {
@@ -39,14 +41,23 @@ function Register() {
       );
       return;
     }
-    const user = {name, surname, email, password};
+    const user = { name, surname, email, password };
 
-    if(isLogin) {
+    if (isLogin) {
       console.log('login');
     } else {
       registerUser(user);
     }
   };
+
+  useEffect(() => {
+    if (user) {
+      setTimeout(() => {
+        navigate('/dashboard');
+        clearAlert();
+      }, 2000);
+    }
+  }, [user, navigate, clearAlert]);
 
   return (
     <Wrapper className="full-page">
