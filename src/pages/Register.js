@@ -15,7 +15,8 @@ const initialState = {
 function Register() {
   const [values, setValues] = useState(initialState);
 
-  const { isLoading, showAlert, displayAlert, clearAlert } = useAppContext();
+  const { isLoading, showAlert, displayAlert, clearAlert, registerUser } =
+    useAppContext();
 
   const toggleForms = () => {
     setValues({ ...values, isLogin: !values.isLogin });
@@ -38,7 +39,13 @@ function Register() {
       );
       return;
     }
-    console.log(values);
+    const user = {name, surname, email, password};
+
+    if(isLogin) {
+      console.log('login');
+    } else {
+      registerUser(user);
+    }
   };
 
   return (
@@ -79,12 +86,17 @@ function Register() {
           handleChange={handleChange}
           labelText="Contraseña"
         />
-        <button type="submit" className="btn btn-block">
+        <button type="submit" className="btn btn-block" disabled={isLoading}>
           Enviar
         </button>
         <p>
           {values.isLogin ? '¿No tienes cuenta?' : '¿Ya tienes cuenta?'}
-          <button type="button" onClick={toggleForms} className="member-btn">
+          <button
+            type="button"
+            onClick={toggleForms}
+            className="member-btn"
+            disabled={isLoading}
+          >
             {values.isLogin ? 'Registrarse' : 'Iniciar sesión'}
           </button>
         </p>

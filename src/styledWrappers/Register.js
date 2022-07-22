@@ -32,5 +32,10 @@ const Wrapper = styled.section`
     cursor: pointer;
     letter-spacing: var(--letterSpacing);
   }
+  .member-btn:disabled {
+    color: var(--primary-300);
+    opacity: .5;
+    cursor: not-allowed;
+  }
 `
 export default Wrapper
