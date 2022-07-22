@@ -1,4 +1,4 @@
-import { useAppContext } from '../contexts/appContext';
+import { useAppContext } from '../contexts/app/appContext';
 
 function Alert() {
   const { alertType, alertMessage } = useAppContext();

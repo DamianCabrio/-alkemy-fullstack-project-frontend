@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { Logo, FormRow, Alert } from '../components';
-import { useAppContext } from '../contexts/appContext';
+import { useAppContext } from '../contexts/app/appContext';
 import Wrapper from '../styledWrappers/Register';
 
 const initialState = {
