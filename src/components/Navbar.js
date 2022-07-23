@@ -7,7 +7,7 @@ import Logo from './Logo';
 
 function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
-  const { toggleSidebar } = useAppContext();
+  const { toggleSidebar, logoutUser, user } = useAppContext();
 
   return (
     <Wrapper>
@@ -26,15 +26,11 @@ function Navbar() {
             onClick={() => setShowDropdown(!showDropdown)}
           >
             <FaUserCircle />
-            Nombre
+            {user?.name}
             <FaCaretDown />
           </button>
           <div className={showDropdown ? 'dropdown show-dropdown' : 'dropdown'}>
-            <button
-              type="button"
-              className="dropdown-btn"
-              onClick={() => console.log('cerrar sesión')}
-            >
+            <button type="button" className="dropdown-btn" onClick={logoutUser}>
               Cerrar sesión
             </button>
           </div>

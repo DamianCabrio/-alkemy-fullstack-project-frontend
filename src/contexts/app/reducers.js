@@ -1,3 +1,5 @@
+import { initialState } from './appContext';
+
 import {
   DISPLAY_ALERT,
   CLEAR_ALERT,
@@ -5,6 +7,7 @@ import {
   SETUP_USER_SUCCESS,
   SETUP_USER_FAILURE,
   TOGGLE_SIDEBAR,
+  LOGOUT_USER,
 } from './actions';
 
 const reducer = (state = {}, action) => {
@@ -50,6 +53,12 @@ const reducer = (state = {}, action) => {
       return {
         ...state,
         sidebarOpen: !state.sidebarOpen,
+      };
+    case LOGOUT_USER:
+      return {
+        ...initialState,
+        user: null,
+        token: null,
       };
     default:
       throw new Error(`No such action: ${action.type}`);

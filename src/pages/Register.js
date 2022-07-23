@@ -17,14 +17,8 @@ function Register() {
   const navigate = useNavigate();
 
   const [values, setValues] = useState(initialState);
-  const {
-    user,
-    isLoading,
-    showAlert,
-    displayAlert,
-    clearAlert,
-    setupUser,
-  } = useAppContext();
+  const { user, isLoading, showAlert, displayAlert, clearAlert, setupUser } =
+    useAppContext();
 
   const toggleForms = () => {
     setValues({ ...values, isLogin: !values.isLogin });
@@ -52,7 +46,7 @@ function Register() {
     if (isLogin) {
       delete userObj.name;
       delete userObj.surname;
-      setupUser(userObj, 'login', `¡Bienvenido ${name}!`);
+      setupUser(userObj, 'login', '¡Bienvenido/a!');
     } else {
       setupUser(userObj, 'register', '¡Registro exitoso!');
     }
