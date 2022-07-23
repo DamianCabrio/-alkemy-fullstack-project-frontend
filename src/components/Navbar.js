@@ -1,9 +1,12 @@
+import { useState } from 'react';
+
 import Wrapper from '../styledWrappers/Navbar';
 import { FaAlignLeft, FaUserCircle, FaCaretDown } from 'react-icons/fa';
 import { useAppContext } from '../contexts/app/appContext';
 import Logo from './Logo';
 
 function Navbar() {
+  const [showDropdown, setShowDropdown] = useState(false);
   const { toggleSidebar } = useAppContext();
 
   return (
@@ -20,13 +23,13 @@ function Navbar() {
           <button
             type="button"
             className="btn"
-            onClick={() => console.log('toggle dropdown')}
+            onClick={() => setShowDropdown(!showDropdown)}
           >
             <FaUserCircle />
             Nombre
             <FaCaretDown />
           </button>
-          <div className="dropdown show-dropdown">
+          <div className={showDropdown ? 'dropdown show-dropdown' : 'dropdown'}>
             <button
               type="button"
               className="dropdown-btn"
