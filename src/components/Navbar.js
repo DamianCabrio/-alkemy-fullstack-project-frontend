@@ -4,14 +4,12 @@ import { useAppContext } from '../contexts/app/appContext';
 import Logo from './Logo';
 
 function Navbar() {
+  const { toggleSidebar } = useAppContext();
+
   return (
     <Wrapper>
       <div className="nav-center">
-        <button
-          type="button"
-          className="toggle-btn"
-          onClick={() => console.log('toggle sidebar')}
-        >
+        <button type="button" className="toggle-btn" onClick={toggleSidebar}>
           <FaAlignLeft />
         </button>
         <div>

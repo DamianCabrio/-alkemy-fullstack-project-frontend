@@ -4,6 +4,7 @@ import {
   SETUP_USER_BEGIN,
   SETUP_USER_SUCCESS,
   SETUP_USER_FAILURE,
+  TOGGLE_SIDEBAR,
 } from './actions';
 
 const reducer = (state = {}, action) => {
@@ -44,6 +45,11 @@ const reducer = (state = {}, action) => {
         showAlert: true,
         alertMessage: action.payload.message,
         alertType: 'danger',
+      };
+    case TOGGLE_SIDEBAR:
+      return {
+        ...state,
+        sidebarOpen: !state.sidebarOpen,
       };
     default:
       throw new Error(`No such action: ${action.type}`);
