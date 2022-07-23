@@ -53,8 +53,12 @@ const Wrapper = styled.aside`
     text-transform: capitalize;
     transition: var(--transition);
   }
+  .nav-link:not(.active) {
+    opacity: 75%;
+  }
   .nav-link:hover {
     color: var(--grey-900);
+    opacity: 100%;
   }
   .nav-link:hover .icon {
     color: var(--primary-500);
@@ -67,7 +71,7 @@ const Wrapper = styled.aside`
     transition: var(--transition);
   }
   .active {
-    color: var(--grey-900);
+    color: var(--black);
   }
   .active .icon {
     color: var(--primary-500);
@@ -76,5 +80,5 @@ const Wrapper = styled.aside`
   header {
     width: 200px;
   }
-`
+`;
 export default Wrapper
