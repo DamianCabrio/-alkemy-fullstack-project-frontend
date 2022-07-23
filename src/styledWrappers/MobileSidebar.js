@@ -72,5 +72,9 @@ const Wrapper = styled.aside`
   .active .icon {
     color: var(--primary-500);
   }
+
+  header {
+    width: 200px;
+  }
 `
 export default Wrapper
