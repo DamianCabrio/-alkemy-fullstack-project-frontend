@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import { Landing, Error, Register } from './pages';
+import { Landing, Error, Register, ProtectedRoute } from './pages';
 import {
   AddTransaction,
   AllTransactions,
@@ -14,7 +14,14 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/dashboard" element={<DashboardLayout />}>
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <DashboardLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route index element={<Stats />} />
           <Route path="operaciones" element={<AllTransactions />} />
           <Route path="agregar" element={<AddTransaction />} />
