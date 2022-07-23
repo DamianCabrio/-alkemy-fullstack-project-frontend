@@ -1,14 +1,21 @@
 import { Outlet, Link } from 'react-router-dom';
 import Wrapper from '../../styledWrappers/DashboardLayout';
 
+import { Navbar, Sidebar, MobileSidebar } from '../../components';
+
 function DashboardLayout() {
   return (
     <Wrapper>
-      <nav>
-        <Link to="/dashboard/operaciones">Operaciones</Link>
-        <Link to="/dashboard/agregar">Agregar</Link>
-      </nav>
-      <Outlet />
+      <main className="dashboard">
+        <MobileSidebar />
+        <Sidebar />
+        <div>
+          <Navbar />
+          <div className="dashboard-page">
+            <Outlet />
+          </div>
+        </div>
+      </main>
     </Wrapper>
   );
 }
