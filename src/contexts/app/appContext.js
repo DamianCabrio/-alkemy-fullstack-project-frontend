@@ -30,6 +30,15 @@ const initialState = {
   user: user ? JSON.parse(user) : null,
   token: token ? token : null,
   sidebarOpen: false,
+
+  isEditing: false,
+  editTransactionId: null,
+
+  transactionDescription: '',
+  transactionAmount: 0,
+  transactionType: 0,
+  transactionDate: new Date().toISOString().split('T')[0],
+  transactionCategory: 1,
 };
 
 const AppContext = createContext(initialState);
