@@ -4,6 +4,7 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useCallback,
   createContext,
 } from 'react';
 
@@ -75,24 +76,18 @@ const AppProvider = ({ children }) => {
     []
   );
 
-  const clearAlert = useMemo(
-    () => () => {
-      dispatch({
-        type: CLEAR_ALERT,
-      });
-    },
-    []
-  );
+  const clearAlert = useCallback(() => {
+    dispatch({
+      type: CLEAR_ALERT,
+    });
+  }, []);
 
-  const logoutUser = useMemo(
-    () => () => {
-      dispatch({
-        type: LOGOUT_USER,
-      });
-      removeUserFromLocalStorage();
-    },
-    []
-  );
+  const logoutUser = useCallback(() => {
+    dispatch({
+      type: LOGOUT_USER,
+    });
+    removeUserFromLocalStorage();
+  }, []);
 
   useEffect(() => {
     client.interceptors.request.use(
@@ -215,7 +210,7 @@ const AppProvider = ({ children }) => {
     }
   };
 
-  const fetchCategoryOptions = async () => {
+  const fetchCategoryOptions = useCallback(async () => {
     dispatch({
       type: SETUP_BEGIN,
     });
@@ -232,7 +227,7 @@ const AppProvider = ({ children }) => {
         payload: { message: error.response.data.message },
       });
     }
-  };
+  }, [client, clearAlert]);
 
   const handleTransactionInput = (field, value) => {
     dispatch({
