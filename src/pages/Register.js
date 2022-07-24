@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Logo, FormRow, Alert } from '../components';
+import { Logo, FormRow, Alert, FormButton } from '../components';
 import { useAppContext } from '../contexts/app/appContext';
 import Wrapper from '../styledWrappers/Register';
 
@@ -99,9 +99,12 @@ function Register() {
           handleChange={handleChange}
           labelText="Contraseña"
         />
-        <button type="submit" className="btn btn-block" disabled={isLoading}>
-          Enviar
-        </button>
+        <FormButton
+          classes="btn-block"
+          type="submit"
+          labelText={values.isLogin ? 'Iniciar sesión' : 'Registrarse'}
+          disabled={isLoading}
+        />
         <p>
           {values.isLogin ? '¿No tienes cuenta?' : '¿Ya tienes cuenta?'}
           <button

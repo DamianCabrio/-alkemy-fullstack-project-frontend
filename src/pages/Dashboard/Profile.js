@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FormRow, Alert } from '../../components';
+import { FormRow, Alert, FormButton } from '../../components';
 import { useAppContext } from '../../contexts/app/appContext';
 import Wrapper from '../../styledWrappers/DashboardFormPage';
 
@@ -79,9 +79,12 @@ function Profile() {
             id="email"
             disabled
           />
-          <button className="btn btn-block" type="submit" disabled={isLoading}>
-            {isLoading ? 'Espere por favor...' : 'Guardar Cambios'}
-          </button>
+          <FormButton
+            classes="btn-block"
+            type="submit"
+            labelText="Guardar Cambios"
+            disabled={isLoading}
+          />
         </div>
       </form>
       <form className="form" onSubmit={handleSubmitPassword}>
@@ -103,9 +106,12 @@ function Profile() {
             id="confirmPassword"
             handleChange={(e) => setConfirmPassword(e.target.value)}
           />
-          <button className="btn btn-block" type="submit" disabled={isLoading}>
-            {isLoading ? 'Espere por favor...' : 'Guardar Contraseña'}
-          </button>
+          <FormButton
+            classes="btn-block"
+            labelText="Cambiar Contraseña"
+            type="submit"
+            disabled={isLoading}
+          />
         </div>
       </form>
     </Wrapper>
