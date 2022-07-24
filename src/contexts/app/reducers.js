@@ -9,6 +9,7 @@ import {
   TOGGLE_SIDEBAR,
   LOGOUT_USER,
   FETCH_CATEGORY_OPTIONS_SUCCESS,
+  HANDLE_TRANSACTION_INPUT,
 } from './actions';
 
 const reducer = (state = {}, action) => {
@@ -66,6 +67,11 @@ const reducer = (state = {}, action) => {
         ...state,
         categoryOptions: action.payload,
         isLoading: false,
+      };
+    case HANDLE_TRANSACTION_INPUT:
+      return {
+        ...state,
+        [action.payload.field]: action.payload.value,
       };
     default:
       throw new Error(`No such action: ${action.type}`);

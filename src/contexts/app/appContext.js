@@ -18,6 +18,7 @@ import {
   TOGGLE_SIDEBAR,
   LOGOUT_USER,
   FETCH_CATEGORY_OPTIONS_SUCCESS,
+  HANDLE_TRANSACTION_INPUT,
 } from './actions';
 
 const token = localStorage.getItem('token');
@@ -221,6 +222,13 @@ const AppProvider = ({ children }) => {
     }
   };
 
+  const handleTransactionInput = (field, value) => {
+    dispatch({
+      type: HANDLE_TRANSACTION_INPUT,
+      payload: { field, value },
+    });
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -233,6 +241,7 @@ const AppProvider = ({ children }) => {
         updateUser,
         updatePassword,
         fetchCategoryOptions,
+        handleTransactionInput,
       }}
     >
       {children}

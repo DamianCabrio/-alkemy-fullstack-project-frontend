@@ -19,6 +19,7 @@ function AddTransaction() {
     fetchCategoryOptions,
     isEditing,
     clearAlert,
+    handleTransactionInput,
   } = useAppContext();
 
   useEffect(() => {
@@ -29,6 +30,7 @@ function AddTransaction() {
 
   const handleInput = (e) => {
     const { name, value } = e.target;
+    handleTransactionInput(name, value);
   };
 
   const handleSubmit = (e) => {
