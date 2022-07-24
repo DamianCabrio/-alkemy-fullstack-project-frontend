@@ -12,6 +12,7 @@ import {
   HANDLE_TRANSACTION_INPUT,
   CLEAR_TRANSACTION_FORM_VALUES,
   CREATE_TRANSACTION_SUCCESS,
+  FETCH_TRANSACTIONS_SUCCESS,
 } from './actions';
 
 const reducer = (state = {}, action) => {
@@ -63,6 +64,7 @@ const reducer = (state = {}, action) => {
         ...initialState,
         user: null,
         token: null,
+        isLoading: false,
       };
     case FETCH_CATEGORY_OPTIONS_SUCCESS:
       return {
@@ -90,6 +92,14 @@ const reducer = (state = {}, action) => {
         ...transactionInitialState,
         alertMessage: action.payload.message,
         alertType: 'success',
+      };
+    case FETCH_TRANSACTIONS_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        transactions: action.payload.transactions,
+        totalTransactions: action.payload.totalTransactions,
+        numOfPages: action.payload.numOfPages,
       };
     default:
       throw new Error(`No such action: ${action.type}`);

@@ -21,6 +21,7 @@ import {
   HANDLE_TRANSACTION_INPUT,
   CLEAR_TRANSACTION_FORM_VALUES,
   CREATE_TRANSACTION_SUCCESS,
+  FETCH_TRANSACTIONS_SUCCESS,
 } from './actions';
 
 const token = localStorage.getItem('token');
@@ -53,6 +54,11 @@ const initialState = {
     { id: 0, name: 'Ingreso' },
     { id: 1, name: 'Egreso' },
   ],
+
+  transactions: [],
+  totalTransactions: 0,
+  numOfPages: 1,
+  currentPage: 1,
 };
 
 const AppContext = createContext(initialState);
@@ -277,6 +283,31 @@ const AppProvider = ({ children }) => {
     }
   };
 
+  const getTransactions = async () => {
+    let url = `/transactions`;
+    dispatch({
+      type: SETUP_BEGIN,
+    });
+
+    try {
+      const { data } = await client.get(url);
+      const { transactions, total, numOfPages } = data.result;
+      dispatch({
+        type: FETCH_TRANSACTIONS_SUCCESS,
+        payload: {
+          transactions,
+          total,
+          numOfPages,
+        },
+      });
+    } catch (error) {
+      dispatch({
+        type: SETUP_FAILURE,
+        payload: { message: error.response.data.message },
+      });
+    }
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -292,6 +323,7 @@ const AppProvider = ({ children }) => {
         handleTransactionInput,
         clearTransactionForm,
         createTransaction,
+        getTransactions,
       }}
     >
       {children}
