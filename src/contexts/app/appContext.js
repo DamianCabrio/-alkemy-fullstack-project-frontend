@@ -20,18 +20,19 @@ import {
   FETCH_CATEGORY_OPTIONS_SUCCESS,
   HANDLE_TRANSACTION_INPUT,
   CLEAR_TRANSACTION_FORM_VALUES,
+  CREATE_TRANSACTION_SUCCESS,
 } from './actions';
 
 const token = localStorage.getItem('token');
 const user = localStorage.getItem('user');
- 
+
 const transactionInitialState = {
   transactionDescription: '',
   transactionAmount: 1,
   transactionType: 0,
   transactionDate: new Date().toISOString().split('T')[0],
   transactionCategory: 1,
-}
+};
 
 const initialState = {
   isLoading: false,
@@ -232,13 +233,49 @@ const AppProvider = ({ children }) => {
       type: HANDLE_TRANSACTION_INPUT,
       payload: { field, value },
     });
-  }
+  };
 
   const clearTransactionForm = () => {
     dispatch({
       type: CLEAR_TRANSACTION_FORM_VALUES,
     });
-  }
+    clearAlert();
+  };
+
+  const createTransaction = async () => {
+    dispatch({
+      type: SETUP_BEGIN,
+    });
+
+    try {
+      const {
+        transactionDescription: description,
+        transactionAmount: amount,
+        transactionType: type,
+        transactionDate: date,
+        transactionCategory: category_id,
+      } = state;
+      const { data } = await client.post('/transactions/add', {
+        description,
+        amount,
+        type,
+        date,
+        category_id,
+      });
+
+      const { message } = data;
+      dispatch({
+        type: CREATE_TRANSACTION_SUCCESS,
+        payload: { message },
+      });
+      clearTransactionForm();
+    } catch (error) {
+      dispatch({
+        type: SETUP_FAILURE,
+        payload: { message: error.response.data.message },
+      });
+    }
+  };
 
   return (
     <AppContext.Provider
@@ -254,6 +291,7 @@ const AppProvider = ({ children }) => {
         fetchCategoryOptions,
         handleTransactionInput,
         clearTransactionForm,
+        createTransaction,
       }}
     >
       {children}

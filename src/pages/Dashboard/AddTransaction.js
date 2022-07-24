@@ -21,6 +21,7 @@ function AddTransaction() {
     clearAlert,
     handleTransactionInput,
     clearTransactionForm,
+    createTransaction,
   } = useAppContext();
 
   useEffect(() => {
@@ -36,18 +37,16 @@ function AddTransaction() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (
-      !transactionDescription ||
-      !transactionAmount ||
-      !transactionType !== false ||
-      !transactionDate ||
-      !transactionCategory
-    ) {
+    if (!transactionDescription || !transactionAmount || !transactionDate) {
       displayAlert('Por favor, complete todos los campos', 'danger');
       return;
     }
+
+    if (isEditing) {
+      return;
+    }
     clearAlert();
-    console.log('handleSubmit');
+    createTransaction();
   };
 
   return (
@@ -71,6 +70,8 @@ function AddTransaction() {
             name="transactionAmount"
             value={transactionAmount}
             handleChange={handleInput}
+            min="1"
+            step="0.01"
           />
           <FormRow
             type="date"

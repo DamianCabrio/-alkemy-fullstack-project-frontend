@@ -11,6 +11,7 @@ import {
   FETCH_CATEGORY_OPTIONS_SUCCESS,
   HANDLE_TRANSACTION_INPUT,
   CLEAR_TRANSACTION_FORM_VALUES,
+  CREATE_TRANSACTION_SUCCESS,
 } from './actions';
 
 const reducer = (state = {}, action) => {
@@ -80,6 +81,15 @@ const reducer = (state = {}, action) => {
         isEditing: false,
         editTransactionId: null,
         ...transactionInitialState,
+      };
+    case CREATE_TRANSACTION_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        showAlert: true,
+        ...transactionInitialState,
+        alertMessage: action.payload.message,
+        alertType: 'success',
       };
     default:
       throw new Error(`No such action: ${action.type}`);

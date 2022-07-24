@@ -1,4 +1,4 @@
-function FormRow({type, name, value, handleChange, labelText, disabled}) {
+function FormRow({type, name, value, handleChange, labelText, disabled, min, step}) {
   return (
     <div className="form-row">
       <label htmlFor={name} className="form-label">
@@ -12,8 +12,8 @@ function FormRow({type, name, value, handleChange, labelText, disabled}) {
         onChange={handleChange}
         value={value}
         disabled={disabled}
-        min={type === 'number' ? 1 : undefined}
-        
+        min={min}
+        step={step}
       />
     </div>
   );
