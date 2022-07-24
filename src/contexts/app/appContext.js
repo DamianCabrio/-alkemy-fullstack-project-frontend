@@ -312,7 +312,24 @@ const AppProvider = ({ children }) => {
   };
 
   const deleteTransaction = async (transactionId) => {
-    console.log('deleteTransaction', transactionId);
+    dispatch({
+      type: SETUP_BEGIN,
+    });
+
+    try {
+      const { data } = await client.delete(`/transactions/${transactionId}`);
+      const { message } = data;
+      await getTransactions();
+      dispatch({
+        type: DISPLAY_ALERT,
+        payload: { message, type: 'success' },
+      });
+    } catch (error) {
+      dispatch({
+        type: SETUP_FAILURE,
+        payload: { message: error.response.data.message },
+      });
+    }
   };
 
   const editTransaction = () => {

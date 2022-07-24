@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import Loading from './Loading';
 import Transaction from './Transaction';
 import Wrapper from '../styledWrappers/TransactionsContainer';
+import Alert from './Alert';
 
 function TransactionsContainer() {
   const {
@@ -11,6 +12,7 @@ function TransactionsContainer() {
     isLoading,
     currentPage,
     totalTransactions,
+    showAlert,
   } = useAppContext();
 
   useEffect(() => {
@@ -31,6 +33,7 @@ function TransactionsContainer() {
 
   return (
     <Wrapper>
+      {showAlert && <Alert />}
       <h5>
         {totalTransactions}{' '}
         {transactions.length > 1 ? 'operaciones' : 'operación'} en total
