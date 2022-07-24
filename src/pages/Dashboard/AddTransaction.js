@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 
-import { FormRow, Alert } from '../../components';
+import { FormRow, FormRowSelect, Alert, FormButton } from '../../components';
 import { useAppContext } from '../../contexts/app/appContext';
 import Wrapper from '../../styledWrappers/DashboardFormPage';
 
 function AddTransaction() {
   const {
-    token,
+    isLoading,
     showAlert,
     displayAlert,
     transactionDescription,
@@ -34,13 +34,19 @@ function AddTransaction() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if(!transactionDescription || !transactionAmount || !transactionType || !transactionDate || !transactionCategory) {
+    if (
+      !transactionDescription ||
+      !transactionAmount ||
+      !transactionType ||
+      !transactionDate ||
+      !transactionCategory
+    ) {
       displayAlert('Por favor, complete todos los campos', 'danger');
       return;
     }
     clearAlert();
     console.log('handleSubmit');
-  }
+  };
 
   return (
     <Wrapper>
@@ -72,11 +78,30 @@ function AddTransaction() {
             value={transactionDate}
             handleChange={handleInput}
           />
+          <FormRowSelect
+            labelText="Tipo"
+            name="transactionType"
+            value={transactionType}
+            handleChange={handleInput}
+            options={transactionTypes}
+          />
+
+          <FormRowSelect
+            labelText="Categoría"
+            name="transactionCategory"
+            value={transactionCategory}
+            handleChange={handleInput}
+            options={categoryOptions}
+            disabled={isLoading}
+          />
 
           <div className="btn-container">
-            <button type="submit" className="btn btn-block submit-btn">
-              Enviar
-            </button>
+            <FormButton
+              classes="btn-block submit-btn"
+              type="submit"
+              labelText="Enviar"
+              disabled={isLoading}
+            />
           </div>
         </div>
       </form>
