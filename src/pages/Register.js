@@ -57,7 +57,7 @@ function Register() {
       setTimeout(() => {
         navigate('/dashboard');
         clearAlert();
-      }, 2000);
+      }, 500);
     }
   }, [user, navigate, clearAlert]);
 
