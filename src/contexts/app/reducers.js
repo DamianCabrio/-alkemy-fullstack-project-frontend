@@ -22,6 +22,7 @@ const reducer = (state = {}, action) => {
       return {
         ...state,
         showAlert: true,
+        isLoading: false,
         alertMessage: action.payload.message,
         alertType: action.payload.type,
       };
@@ -114,7 +115,7 @@ const reducer = (state = {}, action) => {
         transactionAmount: transaction.amount,
         transactionType: transaction.type,
         transactionDate: transaction.date.split('T')[0],
-        transactionCategory: transaction.category,
+        transactionCategory: transaction.category_id,
       };
     default:
       throw new Error(`No such action: ${action.type}`);

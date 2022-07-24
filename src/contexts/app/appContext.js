@@ -332,9 +332,42 @@ const AppProvider = ({ children }) => {
     }
   };
 
-  const editTransaction = () => {
-    console.log('editTransaction');
-  }
+  const editTransaction = async () => {
+    dispatch({
+      type: SETUP_BEGIN,
+    });
+
+    try {
+      const {
+        transactionDescription: description,
+        transactionAmount: amount,
+        transactionDate: date,
+        transactionCategory: category_id,
+      } = state;
+      const { data } = await client.put(
+        `/transactions/${state.editTransactionId}`,
+        {
+          description,
+          amount,
+          date,
+          category_id,
+        }
+      );
+      const { message } = data;
+      dispatch({
+        type: DISPLAY_ALERT,
+        payload: { message, type: 'success' },
+      });
+      dispatch({
+        type: CLEAR_TRANSACTION_FORM_VALUES,
+      });
+    } catch (error) {
+      dispatch({
+        type: SETUP_FAILURE,
+        payload: { message: error.response.data.message },
+      });
+    }
+  };
 
   return (
     <AppContext.Provider
