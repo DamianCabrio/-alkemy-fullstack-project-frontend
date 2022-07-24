@@ -1,5 +1,11 @@
-import { useReducer, useContext, useMemo, createContext } from 'react';
-import axios from '../../helpers/axiosInstance';
+import axios from 'axios';
+import {
+  useReducer,
+  useContext,
+  useCallback,
+  useMemo,
+  createContext,
+} from 'react';
 
 import reducer from './reducers';
 
@@ -31,6 +37,19 @@ const AppContext = createContext(initialState);
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  const client = useMemo(
+    () =>
+      axios.create({
+        baseURL: process.env.REACT_APP_SERVER_URL + '/api/v1',
+        timeout: 5000,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${state.token}`,
+        },
+      }),
+    [state.token]
+  );
+
   const displayAlert = (message, type) => {
     dispatch({
       type: DISPLAY_ALERT,
@@ -38,7 +57,7 @@ const AppProvider = ({ children }) => {
     });
   };
 
-  const clearAlert = useMemo(
+  const clearAlert = useCallback(
     () => () => {
       dispatch({
         type: CLEAR_ALERT,
@@ -63,7 +82,7 @@ const AppProvider = ({ children }) => {
     });
 
     try {
-      const { data } = await axios.post(`/api/v1/users/${endpoint}`, user);
+      const { data } = await client.post(`/users/${endpoint}`, user);
       const { user: newUser, token } = data.result;
       dispatch({
         type: SETUP_USER_SUCCESS,
@@ -92,12 +111,17 @@ const AppProvider = ({ children }) => {
   };
 
   const updateUser = async (currentUser) => {
-    console.log(currentUser);
+    try {
+      const { data } = await client.put(`/users/update`, currentUser);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const updatePassword = async (newPassword) => {
     console.log(newPassword);
-  }
+  };
 
   return (
     <AppContext.Provider
