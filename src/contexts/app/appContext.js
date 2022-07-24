@@ -23,6 +23,7 @@ import {
   CLEAR_TRANSACTION_FORM_VALUES,
   CREATE_TRANSACTION_SUCCESS,
   FETCH_TRANSACTIONS_SUCCESS,
+  SET_EDIT_TRANSACTION,
 } from './actions';
 
 const token = localStorage.getItem('token');
@@ -90,8 +91,10 @@ const AppProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
+    console.log('AppProvider: useEffect');
     client.interceptors.request.use(
       (config) => {
+        console.log('Token: ', state.token);
         config.headers.Authorization = `Bearer ${state.token}`;
         return config;
       },
@@ -302,12 +305,19 @@ const AppProvider = ({ children }) => {
   }, [client, clearAlert]);
 
   const setEditTransaction = (transactionId) => {
-    console.log('setEditJob', transactionId);
+    dispatch({
+      type: SET_EDIT_TRANSACTION,
+      payload: transactionId,
+    });
   };
 
   const deleteTransaction = async (transactionId) => {
     console.log('deleteTransaction', transactionId);
   };
+
+  const editTransaction = () => {
+    console.log('editTransaction');
+  }
 
   return (
     <AppContext.Provider
@@ -327,6 +337,7 @@ const AppProvider = ({ children }) => {
         getTransactions,
         setEditTransaction,
         deleteTransaction,
+        editTransaction,
       }}
     >
       {children}

@@ -22,6 +22,7 @@ function AddTransaction() {
     handleTransactionInput,
     clearTransactionForm,
     createTransaction,
+    editTransaction,
   } = useAppContext();
 
   useEffect(() => {
@@ -43,6 +44,7 @@ function AddTransaction() {
     }
 
     if (isEditing) {
+      editTransaction();
       return;
     }
     clearAlert();
@@ -87,6 +89,7 @@ function AddTransaction() {
             value={transactionType}
             handleChange={handleInput}
             options={transactionTypes}
+            disabled={isEditing}
           />
 
           <FormRowSelect

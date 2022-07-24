@@ -13,6 +13,7 @@ import {
   CLEAR_TRANSACTION_FORM_VALUES,
   CREATE_TRANSACTION_SUCCESS,
   FETCH_TRANSACTIONS_SUCCESS,
+  SET_EDIT_TRANSACTION,
 } from './actions';
 
 const reducer = (state = {}, action) => {
@@ -100,6 +101,20 @@ const reducer = (state = {}, action) => {
         transactions: action.payload.transactions,
         totalTransactions: action.payload.total,
         numOfPages: action.payload.numOfPages,
+      };
+    case SET_EDIT_TRANSACTION:
+      const transaction = state.transactions.find(
+        (trans) => trans.id === action.payload
+      );
+      return {
+        ...state,
+        isEditing: true,
+        editTransactionId: action.payload,
+        transactionDescription: transaction.description,
+        transactionAmount: transaction.amount,
+        transactionType: transaction.type,
+        transactionDate: transaction.date.split('T')[0],
+        transactionCategory: transaction.category,
       };
     default:
       throw new Error(`No such action: ${action.type}`);
