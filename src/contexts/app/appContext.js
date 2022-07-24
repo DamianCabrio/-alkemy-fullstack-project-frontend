@@ -12,9 +12,9 @@ import reducer from './reducers';
 import {
   DISPLAY_ALERT,
   CLEAR_ALERT,
-  SETUP_USER_BEGIN,
+  SETUP_BEGIN,
   SETUP_USER_SUCCESS,
-  SETUP_USER_FAILURE,
+  SETUP_FAILURE,
   TOGGLE_SIDEBAR,
   LOGOUT_USER,
   FETCH_CATEGORY_OPTIONS_SUCCESS,
@@ -130,7 +130,7 @@ const AppProvider = ({ children }) => {
 
   const setupUser = async (user, endpoint, message) => {
     dispatch({
-      type: SETUP_USER_BEGIN,
+      type: SETUP_BEGIN,
     });
 
     try {
@@ -143,7 +143,7 @@ const AppProvider = ({ children }) => {
       addUserToLocalStorage(newUser, token);
     } catch (error) {
       dispatch({
-        type: SETUP_USER_FAILURE,
+        type: SETUP_FAILURE,
         payload: { message: error.response.data.message },
       });
     }
@@ -157,7 +157,7 @@ const AppProvider = ({ children }) => {
 
   const updateUser = async (currentUser) => {
     dispatch({
-      type: SETUP_USER_BEGIN,
+      type: SETUP_BEGIN,
     });
 
     try {
@@ -170,7 +170,7 @@ const AppProvider = ({ children }) => {
       addUserToLocalStorage(user, token);
     } catch (error) {
       dispatch({
-        type: SETUP_USER_FAILURE,
+        type: SETUP_FAILURE,
         payload: { message: error.response.data.message },
       });
     }
@@ -178,7 +178,7 @@ const AppProvider = ({ children }) => {
 
   const updatePassword = async (newPassword) => {
     dispatch({
-      type: SETUP_USER_BEGIN,
+      type: SETUP_BEGIN,
     });
 
     try {
@@ -196,7 +196,7 @@ const AppProvider = ({ children }) => {
       logoutUser();
     } catch (error) {
       dispatch({
-        type: SETUP_USER_FAILURE,
+        type: SETUP_FAILURE,
         payload: { message: error.response.data.message },
       });
     }
@@ -204,7 +204,7 @@ const AppProvider = ({ children }) => {
 
   const fetchCategoryOptions = async () => {
     dispatch({
-      type: SETUP_USER_BEGIN,
+      type: SETUP_BEGIN,
     });
     try {
       const { data } = await client.get('/categories');
@@ -214,7 +214,7 @@ const AppProvider = ({ children }) => {
       });
     } catch (error) {
       dispatch({
-        type: SETUP_USER_FAILURE,
+        type: SETUP_FAILURE,
         payload: { message: error.response.data.message },
       });
     }

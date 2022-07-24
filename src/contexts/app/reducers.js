@@ -3,9 +3,9 @@ import { initialState } from './appContext';
 import {
   DISPLAY_ALERT,
   CLEAR_ALERT,
-  SETUP_USER_BEGIN,
+  SETUP_BEGIN,
   SETUP_USER_SUCCESS,
-  SETUP_USER_FAILURE,
+  SETUP_FAILURE,
   TOGGLE_SIDEBAR,
   LOGOUT_USER,
   FETCH_CATEGORY_OPTIONS_SUCCESS,
@@ -27,7 +27,7 @@ const reducer = (state = {}, action) => {
         alertMessage: '',
         alertType: '',
       };
-    case SETUP_USER_BEGIN:
+    case SETUP_BEGIN:
       return {
         ...state,
         isLoading: true,
@@ -42,7 +42,7 @@ const reducer = (state = {}, action) => {
         alertMessage: action.payload.message,
         alertType: 'success',
       };
-    case SETUP_USER_FAILURE:
+    case SETUP_FAILURE:
       return {
         ...state,
         isLoading: false,
