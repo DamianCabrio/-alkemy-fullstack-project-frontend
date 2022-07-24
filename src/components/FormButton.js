@@ -1,6 +1,6 @@
-function FormButton({ classes, type, disabled, labelText }) {
+function FormButton({ classes, type, disabled, labelText, onClick }) {
   return (
-    <button className={`btn ${classes}`} type={type} disabled={disabled}>
+    <button className={`btn ${classes}`} type={type} disabled={disabled} onClick={onClick}>
       {disabled ? 'Cargando...' : labelText}
     </button>
   );

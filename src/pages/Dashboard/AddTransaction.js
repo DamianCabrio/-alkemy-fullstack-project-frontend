@@ -20,6 +20,7 @@ function AddTransaction() {
     isEditing,
     clearAlert,
     handleTransactionInput,
+    clearTransactionForm,
   } = useAppContext();
 
   useEffect(() => {
@@ -35,11 +36,10 @@ function AddTransaction() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (
       !transactionDescription ||
       !transactionAmount ||
-      !transactionType ||
+      !transactionType !== false ||
       !transactionDate ||
       !transactionCategory
     ) {
@@ -102,6 +102,13 @@ function AddTransaction() {
               classes="btn-block submit-btn"
               type="submit"
               labelText="Enviar"
+              disabled={isLoading}
+            />
+            <FormButton
+              classes="btn-block clear-btn"
+              type="button"
+              labelText="Limpiar"
+              onClick={clearTransactionForm}
               disabled={isLoading}
             />
           </div>

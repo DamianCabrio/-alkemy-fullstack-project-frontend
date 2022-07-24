@@ -41,7 +41,7 @@ const Wrapper = styled.section`
     }
   }
   .clear-btn {
-    background: var(--grey-500);
+    background: var(--grey-800);
   }
   .clear-btn:hover {
     background: var(--black);
@@ -64,6 +64,6 @@ const Wrapper = styled.section`
       margin-top: 0;
     }
   }
-`
+`;
 
 export default Wrapper

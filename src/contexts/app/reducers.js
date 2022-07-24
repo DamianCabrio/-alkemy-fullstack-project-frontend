@@ -1,4 +1,4 @@
-import { initialState } from './appContext';
+import { initialState, transactionInitialState } from './appContext';
 
 import {
   DISPLAY_ALERT,
@@ -10,6 +10,7 @@ import {
   LOGOUT_USER,
   FETCH_CATEGORY_OPTIONS_SUCCESS,
   HANDLE_TRANSACTION_INPUT,
+  CLEAR_TRANSACTION_FORM_VALUES,
 } from './actions';
 
 const reducer = (state = {}, action) => {
@@ -72,6 +73,13 @@ const reducer = (state = {}, action) => {
       return {
         ...state,
         [action.payload.field]: action.payload.value,
+      };
+    case CLEAR_TRANSACTION_FORM_VALUES:
+      return {
+        ...state,
+        isEditing: false,
+        editTransactionId: null,
+        ...transactionInitialState,
       };
     default:
       throw new Error(`No such action: ${action.type}`);

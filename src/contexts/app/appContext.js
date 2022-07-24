@@ -19,10 +19,19 @@ import {
   LOGOUT_USER,
   FETCH_CATEGORY_OPTIONS_SUCCESS,
   HANDLE_TRANSACTION_INPUT,
+  CLEAR_TRANSACTION_FORM_VALUES,
 } from './actions';
 
 const token = localStorage.getItem('token');
 const user = localStorage.getItem('user');
+ 
+const transactionInitialState = {
+  transactionDescription: '',
+  transactionAmount: 1,
+  transactionType: 0,
+  transactionDate: new Date().toISOString().split('T')[0],
+  transactionCategory: 1,
+}
 
 const initialState = {
   isLoading: false,
@@ -36,11 +45,7 @@ const initialState = {
   isEditing: false,
   editTransactionId: null,
 
-  transactionDescription: '',
-  transactionAmount: 0,
-  transactionType: 0,
-  transactionDate: new Date().toISOString().split('T')[0],
-  transactionCategory: 1,
+  ...transactionInitialState,
 
   categoryOptions: [],
   transactionTypes: [
@@ -229,6 +234,12 @@ const AppProvider = ({ children }) => {
     });
   }
 
+  const clearTransactionForm = () => {
+    dispatch({
+      type: CLEAR_TRANSACTION_FORM_VALUES,
+    });
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -242,6 +253,7 @@ const AppProvider = ({ children }) => {
         updatePassword,
         fetchCategoryOptions,
         handleTransactionInput,
+        clearTransactionForm,
       }}
     >
       {children}
@@ -251,4 +263,10 @@ const AppProvider = ({ children }) => {
 
 const useAppContext = () => useContext(AppContext);
 
-export { AppContext, AppProvider, useAppContext, initialState };
+export {
+  AppContext,
+  AppProvider,
+  useAppContext,
+  initialState,
+  transactionInitialState,
+};

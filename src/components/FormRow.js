@@ -12,7 +12,7 @@ function FormRow({type, name, value, handleChange, labelText, disabled}) {
         onChange={handleChange}
         value={value}
         disabled={disabled}
-        min={type === 'number' ? 0 : undefined}
+        min={type === 'number' ? 1 : undefined}
         
       />
     </div>
