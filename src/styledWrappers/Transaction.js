@@ -37,21 +37,17 @@ const Wrapper = styled.article`
     p {
       margin: 0;
       text-transform: capitalize;
-      color: var(--grey-400);
+      color: var(--grey-500);
       letter-spacing: var(--letterSpacing);
     }
   }
-  .pending {
-    background: #fcefc7;
-    color: #e9b949;
-  }
-  .interview {
+  .ingreso {
     background: #e0e8f9;
     color: #647acb;
   }
-  .declined {
-    color: #d66a6a;
-    background: #ffeeee;
+  .egreso {
+    background: #fcefc7;
+    color: #e9b949;
   }
   .content {
     padding: 1rem 1.5rem;
@@ -70,8 +66,7 @@ const Wrapper = styled.article`
       grid-template-columns: 1fr 1fr;
     }
   }
-
-  .status {
+  .type {
     border-radius: var(--borderRadius);
     text-transform: capitalize;
     letter-spacing: var(--letterSpacing);
@@ -100,6 +95,6 @@ const Wrapper = styled.article`
   &:hover .actions {
     visibility: visible;
   }
-`
+`;
 
 export default Wrapper

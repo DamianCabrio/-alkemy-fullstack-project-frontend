@@ -112,12 +112,7 @@ const AppProvider = ({ children }) => {
         return Promise.reject(error);
       }
     );
-  }, [
-    state.token,
-    client.interceptors.request,
-    client.interceptors.response,
-    logoutUser,
-  ]);
+  }, [state.token, client, logoutUser]);
 
   const displayAlert = (message, type) => {
     dispatch({
@@ -306,6 +301,14 @@ const AppProvider = ({ children }) => {
     }
   }, [client, clearAlert]);
 
+  const setEditTransaction = (transactionId) => {
+    console.log('setEditJob', transactionId);
+  };
+
+  const deleteTransaction = async (transactionId) => {
+    console.log('deleteTransaction', transactionId);
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -322,6 +325,8 @@ const AppProvider = ({ children }) => {
         clearTransactionForm,
         createTransaction,
         getTransactions,
+        setEditTransaction,
+        deleteTransaction,
       }}
     >
       {children}
