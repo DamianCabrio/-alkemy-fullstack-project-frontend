@@ -8,7 +8,12 @@ import { useAppContext } from '../contexts/app/appContext';
 import NavLinks from './NavLinks';
 
 function MobileSidebar() {
-  const { sidebarOpen, toggleSidebar } = useAppContext();
+  const { sidebarOpen, toggleSidebar, clearAlert } = useAppContext();
+
+  const handleClick = () => {
+    toggleSidebar();
+    clearAlert();
+  }
 
   return (
     <Wrapper>
@@ -24,7 +29,7 @@ function MobileSidebar() {
           <header>
             <Logo />
           </header>
-          <NavLinks toggleSidebar={toggleSidebar} />
+          <NavLinks toggleSidebar={handleClick} />
         </div>
       </div>
     </Wrapper>

@@ -4,7 +4,8 @@ import Logo from './Logo';
 import Wrapper from '../styledWrappers/Sidebar';
 
 function Sidebar() {
-  const { sidebarOpen } = useAppContext();
+  const { sidebarOpen, clearAlert } = useAppContext();
+  
   return (
     <Wrapper>
       <div
@@ -16,7 +17,7 @@ function Sidebar() {
           <header>
             <Logo />
           </header>
-          <NavLinks />
+          <NavLinks toggleSidebar={clearAlert} />
         </div>
       </div>
     </Wrapper>
