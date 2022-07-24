@@ -212,6 +212,7 @@ const AppProvider = ({ children }) => {
         type: FETCH_CATEGORY_OPTIONS_SUCCESS,
         payload: data.result,
       });
+      clearAlert();
     } catch (error) {
       dispatch({
         type: SETUP_FAILURE,
