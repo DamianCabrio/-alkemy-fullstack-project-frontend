@@ -57,7 +57,7 @@ function Profile() {
     <Wrapper>
       <form className="form" onSubmit={handleSubmitProfile}>
         {showAlert && <Alert />}
-        <h3>Profile</h3>
+        <h3>Perfil</h3>
         <div className="form-center">
           <FormRow
             labelText="Nombre"
@@ -87,7 +87,7 @@ function Profile() {
         </div>
       </form>
       <form className="form" onSubmit={handleSubmitPassword}>
-        <h3>Contraseña</h3>
+        <h4>Contraseña</h4>
         <div className="form-center">
           <FormRow
             labelText="Contraseña"

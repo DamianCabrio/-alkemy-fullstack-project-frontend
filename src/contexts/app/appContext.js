@@ -2,7 +2,7 @@ import axios from 'axios';
 import {
   useReducer,
   useContext,
-  useCallback,
+  useEffect,
   useMemo,
   createContext,
 } from 'react';
@@ -42,13 +42,34 @@ const AppProvider = ({ children }) => {
       axios.create({
         baseURL: process.env.REACT_APP_SERVER_URL + '/api/v1',
         timeout: 5000,
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${state.token}`,
-        },
       }),
-    [state.token]
+    []
   );
+
+  useEffect(() => {
+    client.interceptors.request.use(
+      (config) => {
+        config.headers.Authorization = `Bearer ${state.token}`;
+        return config;
+      },
+      (error) => {
+        return Promise.reject(error);
+      }
+    );
+
+    client.interceptors.response.use(
+      (response) => {
+        return response;
+      },
+      (error) => {
+        const { response } = error;
+        if (response.status === 401 || response.status === 403) {
+          dispatch({ type: LOGOUT_USER });
+        }
+        return Promise.reject(error);
+      }
+    );
+  }, [state.token]);
 
   const displayAlert = (message, type) => {
     dispatch({
@@ -57,7 +78,7 @@ const AppProvider = ({ children }) => {
     });
   };
 
-  const clearAlert = useCallback(
+  const clearAlert = useMemo(
     () => () => {
       dispatch({
         type: CLEAR_ALERT,
