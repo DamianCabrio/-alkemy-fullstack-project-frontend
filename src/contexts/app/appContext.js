@@ -46,6 +46,25 @@ const AppProvider = ({ children }) => {
     []
   );
 
+  const clearAlert = useMemo(
+    () => () => {
+      dispatch({
+        type: CLEAR_ALERT,
+      });
+    },
+    []
+  );
+
+  const logoutUser = useMemo(
+    () => () => {
+      dispatch({
+        type: LOGOUT_USER,
+      });
+      removeUserFromLocalStorage();
+    },
+    []
+  );
+
   useEffect(() => {
     client.interceptors.request.use(
       (config) => {
@@ -64,12 +83,17 @@ const AppProvider = ({ children }) => {
       (error) => {
         const { response } = error;
         if (response.status === 401 || response.status === 403) {
-          dispatch({ type: LOGOUT_USER });
+          logoutUser();
         }
         return Promise.reject(error);
       }
     );
-  }, [state.token]);
+  }, [
+    state.token,
+    client.interceptors.request,
+    client.interceptors.response,
+    logoutUser,
+  ]);
 
   const displayAlert = (message, type) => {
     dispatch({
@@ -77,15 +101,6 @@ const AppProvider = ({ children }) => {
       payload: { message, type },
     });
   };
-
-  const clearAlert = useMemo(
-    () => () => {
-      dispatch({
-        type: CLEAR_ALERT,
-      });
-    },
-    []
-  );
 
   const addUserToLocalStorage = (user, token) => {
     localStorage.setItem('user', JSON.stringify(user));
@@ -124,24 +139,53 @@ const AppProvider = ({ children }) => {
     });
   };
 
-  const logoutUser = () => {
-    dispatch({
-      type: LOGOUT_USER,
-    });
-    removeUserFromLocalStorage();
-  };
-
   const updateUser = async (currentUser) => {
+    dispatch({
+      type: SETUP_USER_BEGIN,
+    });
+
     try {
       const { data } = await client.put(`/users/update`, currentUser);
-      console.log(data);
+
+      const { user, token, message } = data.result;
+      dispatch({
+        type: SETUP_USER_SUCCESS,
+        payload: { user, token, message },
+      });
+      addUserToLocalStorage(user, token);
+      clearAlert();
     } catch (error) {
-      console.log(error);
+      dispatch({
+        type: SETUP_USER_FAILURE,
+        payload: { message: error.response.data.message },
+      });
     }
   };
 
   const updatePassword = async (newPassword) => {
-    console.log(newPassword);
+    dispatch({
+      type: SETUP_USER_BEGIN,
+    });
+
+    try {
+      const { data } = await client.put(`/users/update-password`, {
+        password: newPassword,
+      });
+
+      const { message } = data.result;
+      dispatch({
+        type: SETUP_USER_SUCCESS,
+        payload: { user: state.user, token: state.token, message },
+      });
+      addUserToLocalStorage(user, token);
+      clearAlert();
+      logoutUser();
+    } catch (error) {
+      dispatch({
+        type: SETUP_USER_FAILURE,
+        payload: { message: error.response.data.message },
+      });
+    }
   };
 
   return (

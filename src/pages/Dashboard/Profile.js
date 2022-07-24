@@ -30,7 +30,6 @@ function Profile() {
       );
       return;
     }
-    console.log('updateUser');
     clearAlert();
     updateUser({ name, surname, email });
   };
@@ -48,7 +47,6 @@ function Profile() {
       displayAlert('Las contraseñas no coinciden.', 'danger');
       return;
     }
-    console.log('updatePassword');
     clearAlert();
     updatePassword(password);
   };
