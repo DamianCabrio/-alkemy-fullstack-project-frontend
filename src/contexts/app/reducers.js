@@ -8,6 +8,7 @@ import {
   SETUP_USER_FAILURE,
   TOGGLE_SIDEBAR,
   LOGOUT_USER,
+  FETCH_CATEGORY_OPTIONS_SUCCESS,
 } from './actions';
 
 const reducer = (state = {}, action) => {
@@ -59,6 +60,12 @@ const reducer = (state = {}, action) => {
         ...initialState,
         user: null,
         token: null,
+      };
+    case FETCH_CATEGORY_OPTIONS_SUCCESS:
+      return {
+        ...state,
+        categoryOptions: action.payload,
+        isLoading: false,
       };
     default:
       throw new Error(`No such action: ${action.type}`);

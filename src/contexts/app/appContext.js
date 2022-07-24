@@ -17,6 +17,7 @@ import {
   SETUP_USER_FAILURE,
   TOGGLE_SIDEBAR,
   LOGOUT_USER,
+  FETCH_CATEGORY_OPTIONS_SUCCESS,
 } from './actions';
 
 const token = localStorage.getItem('token');
@@ -39,6 +40,12 @@ const initialState = {
   transactionType: 0,
   transactionDate: new Date().toISOString().split('T')[0],
   transactionCategory: 1,
+
+  categoryOptions: [],
+  transactionTypes: [
+    { id: 0, name: 'Ingreso' },
+    { id: 1, name: 'Egreso' },
+  ],
 };
 
 const AppContext = createContext(initialState);
@@ -155,14 +162,12 @@ const AppProvider = ({ children }) => {
 
     try {
       const { data } = await client.put(`/users/update`, currentUser);
-
-      const { user, token, message } = data.result;
+      const { user, token } = data.result;
       dispatch({
         type: SETUP_USER_SUCCESS,
-        payload: { user, token, message },
+        payload: { user, token, message: data.message },
       });
       addUserToLocalStorage(user, token);
-      clearAlert();
     } catch (error) {
       dispatch({
         type: SETUP_USER_FAILURE,
@@ -197,6 +202,24 @@ const AppProvider = ({ children }) => {
     }
   };
 
+  const fetchCategoryOptions = async () => {
+    dispatch({
+      type: SETUP_USER_BEGIN,
+    });
+    try {
+      const { data } = await client.get('/categories');
+      dispatch({
+        type: FETCH_CATEGORY_OPTIONS_SUCCESS,
+        payload: data.result,
+      });
+    } catch (error) {
+      dispatch({
+        type: SETUP_USER_FAILURE,
+        payload: { message: error.response.data.message },
+      });
+    }
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -208,6 +231,7 @@ const AppProvider = ({ children }) => {
         logoutUser,
         updateUser,
         updatePassword,
+        fetchCategoryOptions,
       }}
     >
       {children}
