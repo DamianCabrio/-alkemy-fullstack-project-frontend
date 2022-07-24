@@ -269,7 +269,9 @@ const AppProvider = ({ children }) => {
         type: CREATE_TRANSACTION_SUCCESS,
         payload: { message },
       });
-      clearTransactionForm();
+      dispatch({
+        type: CLEAR_TRANSACTION_FORM_VALUES,
+      });
     } catch (error) {
       dispatch({
         type: SETUP_FAILURE,
@@ -278,7 +280,7 @@ const AppProvider = ({ children }) => {
     }
   };
 
-  const getTransactions = async () => {
+  const getTransactions = useCallback(async () => {
     let url = `/transactions`;
     dispatch({
       type: SETUP_BEGIN,
@@ -302,7 +304,7 @@ const AppProvider = ({ children }) => {
         payload: { message: error.response.data.message },
       });
     }
-  };
+  }, [client, clearAlert]);
 
   return (
     <AppContext.Provider

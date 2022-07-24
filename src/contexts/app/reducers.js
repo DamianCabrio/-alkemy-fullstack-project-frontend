@@ -98,7 +98,7 @@ const reducer = (state = {}, action) => {
         ...state,
         isLoading: false,
         transactions: action.payload.transactions,
-        totalTransactions: action.payload.totalTransactions,
+        totalTransactions: action.payload.total,
         numOfPages: action.payload.numOfPages,
       };
     default:
