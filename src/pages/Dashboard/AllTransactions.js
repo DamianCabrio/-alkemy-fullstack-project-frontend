@@ -1,6 +1,11 @@
+import {TransactionsContainer, SearchContainer} from '../../components';
+
 function AllTransactions() {
   return (
-    <div>All Transactions Page</div>
+    <>
+    <SearchContainer />
+    <TransactionsContainer />
+    </>
   )
 }
 export default AllTransactions

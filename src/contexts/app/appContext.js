@@ -295,6 +295,7 @@ const AppProvider = ({ children }) => {
           numOfPages,
         },
       });
+      clearAlert();
     } catch (error) {
       dispatch({
         type: SETUP_FAILURE,
