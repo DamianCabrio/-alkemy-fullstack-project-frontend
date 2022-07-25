@@ -20,7 +20,7 @@ function AddTransaction() {
     fetchTransactionTypes,
     isEditing,
     clearAlert,
-    handleTransactionInput,
+    handleInputChange,
     clearTransactionForm,
     createTransaction,
     editTransaction,
@@ -40,7 +40,7 @@ function AddTransaction() {
 
   const handleInput = (e) => {
     const { name, value } = e.target;
-    handleTransactionInput(name, value);
+    handleInputChange(name, value);
   };
 
   const handleSubmit = (e) => {

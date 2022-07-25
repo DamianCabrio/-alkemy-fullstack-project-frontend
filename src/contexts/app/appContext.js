@@ -39,6 +39,13 @@ const transactionInitialState = {
   transactionCategory: 1,
 };
 
+const searchTransactionsInitialState = {
+  search: '',
+  searchType: 'all',
+  searchCategory: 'all',
+  sort: 'desc',
+}
+
 const initialState = {
   isLoading: false,
   showAlert: false,
@@ -52,6 +59,11 @@ const initialState = {
   editTransactionId: null,
 
   ...transactionInitialState,
+  ...searchTransactionsInitialState,
+  sortOptions: [
+    { id: 'desc', name: 'Descendente' },
+    { id: 'asc', name: 'Ascendente' },
+  ],
 
   transactionStats: {
     groupByType: [],
@@ -243,7 +255,7 @@ const AppProvider = ({ children }) => {
     }
   }, [client, clearAlert]);
 
-  const handleTransactionInput = (field, value) => {
+  const handleInputChange = (field, value) => {
     dispatch({
       type: HANDLE_TRANSACTION_INPUT,
       payload: { field, value },
@@ -404,6 +416,10 @@ const AppProvider = ({ children }) => {
     }
   }, [client, clearAlert]);
 
+  const clearFilters = () => {
+    console.log('clear filters');
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -417,7 +433,7 @@ const AppProvider = ({ children }) => {
         updatePassword,
         fetchCategoryOptions,
         fetchTransactionTypes,
-        handleTransactionInput,
+        handleInputChange,
         clearTransactionForm,
         createTransaction,
         getTransactions,
@@ -425,6 +441,7 @@ const AppProvider = ({ children }) => {
         deleteTransaction,
         editTransaction,
         fetchTransactionStats,
+        clearFilters,
       }}
     >
       {children}
@@ -440,4 +457,5 @@ export {
   useAppContext,
   initialState,
   transactionInitialState,
+  searchTransactionsInitialState,
 };
