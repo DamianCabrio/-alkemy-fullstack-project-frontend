@@ -3,16 +3,24 @@ import { HiChevronDoubleLeft, HiChevronDoubleRight } from 'react-icons/hi';
 import Wrapper from '../styledWrappers/PaginationContainer';
 
 function PaginationContainer() {
-  const { numOfPages, currentPage } = useAppContext();
+  const { numOfPages, currentPage, changePage } = useAppContext();
 
   const pages = Array.from({ length: numOfPages }, (_, i) => i + 1);
 
   const nextPage = () => {
-    console.log('nextPage');
+    const newPage = currentPage + 1;
+    if (newPage > numOfPages) {
+      return;
+    }
+    changePage(newPage);
   };
 
   const prevPage = () => {
-    console.log('prevPage');
+    const newPage = currentPage - 1;
+    if (newPage < 1) {
+      return;
+    }
+    changePage(newPage);
   };
 
   return (
@@ -27,6 +35,7 @@ function PaginationContainer() {
               type="button"
               key={page}
               className={currentPage === page ? 'pageBtn active' : 'pageBtn'}
+              onClick={() => changePage(page)}
             >
               {page}
             </button>

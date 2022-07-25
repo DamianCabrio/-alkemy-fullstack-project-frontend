@@ -27,6 +27,7 @@ import {
   SET_EDIT_TRANSACTION,
   FETCH_TRANSACTION_STATS_SUCCESS,
   CLEAR_FILTERS,
+  CHANGE_PAGE,
 } from './actions';
 
 const token = localStorage.getItem('token');
@@ -433,6 +434,13 @@ const AppProvider = ({ children }) => {
     });
   };
 
+  const changePage = (page) => {
+    dispatch({
+      type: CHANGE_PAGE,
+      payload: page,
+    });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -455,6 +463,7 @@ const AppProvider = ({ children }) => {
         editTransaction,
         fetchTransactionStats,
         clearFilters,
+        changePage,
       }}
     >
       {children}

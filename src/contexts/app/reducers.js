@@ -17,6 +17,7 @@ import {
   SET_EDIT_TRANSACTION,
   FETCH_TRANSACTION_STATS_SUCCESS,
   CLEAR_FILTERS,
+  CHANGE_PAGE,
 } from './actions';
 
 const reducer = (state = {}, action) => {
@@ -137,6 +138,11 @@ const reducer = (state = {}, action) => {
         ...state,
         ...searchTransactionsInitialState,
         isLoading: false,
+      };
+    case CHANGE_PAGE:
+      return {
+        ...state,
+        currentPage: action.payload,
       };
     default:
       throw new Error(`No such action: ${action.type}`);
