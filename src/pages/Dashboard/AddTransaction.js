@@ -96,7 +96,7 @@ function AddTransaction() {
             value={transactionType}
             handleChange={handleInput}
             options={transactionTypes}
-            disabled={isEditing}
+            disabled={isEditing || isLoading}
           />
 
           <FormRowSelect
