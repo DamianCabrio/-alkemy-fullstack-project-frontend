@@ -1,11 +1,23 @@
 import StatItem from './StatItem';
+import { useAppContext } from '../contexts/app/appContext';
+import Wrapper from '../styledWrappers/StatsContainer';
+import statsTypesStyles from '../helpers/statsTypesStyles';
 
 function StatsContainer() {
+  const { transactionStats } = useAppContext();
+
+  const { groupByTypeStyles, groupByCategoryStyles } = statsTypesStyles;
+
   return (
-    <div>
-      StatsContainer
-      <StatItem />
-    </div>
+    <Wrapper>
+      {transactionStats?.groupByType.map((stat) => (
+        <StatItem
+          key={stat.id}
+          stat={stat}
+          styles={groupByTypeStyles[stat.id]}
+        />
+      ))}
+    </Wrapper>
   );
 }
 export default StatsContainer;

@@ -3,7 +3,8 @@ import { useAppContext } from '../../contexts/app/appContext';
 import { StatsContainer, Loading, ChartsContainer } from '../../components';
 
 function Stats() {
-  const { fetchTransactionStats, isLoading, stats, token } = useAppContext();
+  const { fetchTransactionStats, isLoading, transactionStats, token } =
+    useAppContext();
 
   useEffect(() => {
     if (token) {
@@ -18,7 +19,7 @@ function Stats() {
   return (
     <>
       <StatsContainer />
-      {stats?.monthlyTransactions.length > 0 && <ChartsContainer />}
+      {transactionStats?.monthlyTransactions.length > 0 && <ChartsContainer />}
     </>
   );
 }
