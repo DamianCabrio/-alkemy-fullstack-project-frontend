@@ -17,6 +17,13 @@ function StatsContainer() {
           styles={groupByTypeStyles[stat.id]}
         />
       ))}
+      {transactionStats?.groupByCategory.map((stat) => (
+        <StatItem
+          key={stat.id}
+          stat={stat}
+          styles={groupByCategoryStyles[stat.id]}
+        />
+      ))}
     </Wrapper>
   );
 }

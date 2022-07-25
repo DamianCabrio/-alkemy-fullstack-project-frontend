@@ -12,40 +12,40 @@ const statsTypesStyles = {
   groupByTypeStyles: {
     1: {
       icon: <FaArrowDown />,
-      color: '#f5f5f5',
-      bgColor: '#f5f5f5',
+      color: 'green',
+      bgColor: '#8bcf88',
     },
     2: {
       icon: <FaArrowUp />,
-      color: '#f5f5f5',
-      bgColor: '#f5f5f5',
+      color: 'red',
+      bgColor: '#f5c6cb',
     },
   },
   groupByCategoryStyles: {
     1: {
       icon: <FaPizzaSlice />,
-      color: '#f5f5f5',
-      bgColor: '#f5f5f5',
+      color: '#ff611d',
+      bgColor: '#feb66c',
     },
     2: {
       icon: <FaTshirt />,
-      color: '#f5f5f5',
-      bgColor: '#f5f5f5',
+      color: 'purple',
+      bgColor: '#c6b4f0',
     },
     3: {
       icon: <FaBus />,
-      color: '#f5f5f5',
-      bgColor: '#f5f5f5',
+      color: '#563c0d',
+      bgColor: '#b7a585',
     },
     4: {
       icon: <FaMusic />,
-      color: '#f5f5f5',
-      bgColor: '#f5f5f5',
+      color: '#734f96',
+      bgColor: '#c6b4f0',
     },
     5: {
       icon: <FaPlus />,
-      color: '#f5f5f5',
-      bgColor: '#f5f5f5',
+      color: '#000080',
+      bgColor: '#c6b4f0',
     },
   },
 };
