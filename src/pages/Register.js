@@ -10,6 +10,7 @@ const initialState = {
   surname: '',
   email: '',
   password: '',
+  confirmPassword: '',
   isLogin: true,
 };
 
@@ -32,7 +33,7 @@ function Register() {
   const onSubmit = (e) => {
     e.preventDefault();
     clearAlert();
-    const { name, surname, email, password, isLogin } = values;
+    const { name, surname, email, password, isLogin, confirmPassword } = values;
 
     if (!email || !password || (!isLogin && !name && !surname)) {
       displayAlert(
@@ -41,6 +42,12 @@ function Register() {
       );
       return;
     }
+
+    if (password !== confirmPassword && !isLogin) {
+      displayAlert('Las contraseñas no coinciden.', 'danger');
+      return;
+    }
+
     const userObj = { name, surname, email, password };
 
     if (isLogin) {
@@ -99,6 +106,15 @@ function Register() {
           handleChange={handleChange}
           labelText="Contraseña"
         />
+        {!values.isLogin && (
+          <FormRow
+            labelText="Confirmar contraseña"
+            type="password"
+            name="confirmPassword"
+            value={values.confirmPassword}
+            handleChange={handleChange}
+          />
+        )}
         <FormButton
           classes="btn-block"
           type="submit"
