@@ -4,6 +4,7 @@ import Loading from './Loading';
 import Transaction from './Transaction';
 import Wrapper from '../styledWrappers/TransactionsContainer';
 import Alert from './Alert';
+import PaginationContainer from './PaginationContainer';
 
 function TransactionsContainer() {
   const {
@@ -11,6 +12,7 @@ function TransactionsContainer() {
     getTransactions,
     isLoading,
     currentPage,
+    numOfPages,
     totalTransactions,
     showAlert,
     search,
@@ -47,6 +49,7 @@ function TransactionsContainer() {
           return <Transaction key={transaction.id} transaction={transaction} />;
         })}
       </div>
+      {numOfPages > 1 && <PaginationContainer />}
     </Wrapper>
   );
 }
