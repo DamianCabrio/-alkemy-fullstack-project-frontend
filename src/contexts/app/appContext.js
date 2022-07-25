@@ -19,6 +19,7 @@ import {
   TOGGLE_SIDEBAR,
   LOGOUT_USER,
   FETCH_CATEGORY_OPTIONS_SUCCESS,
+  FETCH_TRANSACTION_TYPES_SUCCESS,
   HANDLE_TRANSACTION_INPUT,
   CLEAR_TRANSACTION_FORM_VALUES,
   CREATE_TRANSACTION_SUCCESS,
@@ -52,10 +53,7 @@ const initialState = {
   ...transactionInitialState,
 
   categoryOptions: [],
-  transactionTypes: [
-    { id: 0, name: 'Ingreso' },
-    { id: 1, name: 'Egreso' },
-  ],
+  transactionTypes: [],
 
   transactions: [],
   totalTransactions: 0,
@@ -227,6 +225,25 @@ const AppProvider = ({ children }) => {
     }
   }, [client, clearAlert]);
 
+  const fetchTransactionTypes = useCallback(async () => {
+    dispatch({
+      type: SETUP_BEGIN,
+    });
+    try {
+      const { data } = await client.get('/transaction-types');
+      dispatch({
+        type: FETCH_TRANSACTION_TYPES_SUCCESS,
+        payload: data.result,
+      });
+      clearAlert();
+    } catch (error) {
+      dispatch({
+        type: SETUP_FAILURE,
+        payload: { message: error.response.data.message },
+      });
+    }
+  }, [client, clearAlert]);
+
   const handleTransactionInput = (field, value) => {
     dispatch({
       type: HANDLE_TRANSACTION_INPUT,
@@ -381,6 +398,7 @@ const AppProvider = ({ children }) => {
         updateUser,
         updatePassword,
         fetchCategoryOptions,
+        fetchTransactionTypes,
         handleTransactionInput,
         clearTransactionForm,
         createTransaction,

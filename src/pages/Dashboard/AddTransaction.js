@@ -17,6 +17,7 @@ function AddTransaction() {
     categoryOptions,
     transactionTypes,
     fetchCategoryOptions,
+    fetchTransactionTypes,
     isEditing,
     clearAlert,
     handleTransactionInput,
@@ -30,6 +31,12 @@ function AddTransaction() {
       fetchCategoryOptions();
     }
   }, [fetchCategoryOptions, categoryOptions.length]);
+
+  useEffect(() => {
+    if(transactionTypes.length === 0) {
+      fetchTransactionTypes();
+    }
+  },[fetchTransactionTypes, transactionTypes.length]);
 
   const handleInput = (e) => {
     const { name, value } = e.target;

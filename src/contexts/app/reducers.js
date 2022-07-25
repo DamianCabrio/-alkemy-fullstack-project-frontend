@@ -9,6 +9,7 @@ import {
   TOGGLE_SIDEBAR,
   LOGOUT_USER,
   FETCH_CATEGORY_OPTIONS_SUCCESS,
+  FETCH_TRANSACTION_TYPES_SUCCESS,
   HANDLE_TRANSACTION_INPUT,
   CLEAR_TRANSACTION_FORM_VALUES,
   CREATE_TRANSACTION_SUCCESS,
@@ -72,6 +73,12 @@ const reducer = (state = {}, action) => {
       return {
         ...state,
         categoryOptions: action.payload,
+        isLoading: false,
+      };
+    case FETCH_TRANSACTION_TYPES_SUCCESS:
+      return {
+        ...state,
+        transactionTypes: action.payload,
         isLoading: false,
       };
     case HANDLE_TRANSACTION_INPUT:

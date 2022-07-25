@@ -10,16 +10,16 @@ import Wrapper from '../styledWrappers/Transaction';
 import TransactionInfo from './TransactionInfo';
 
 function Transaction({ transaction }) {
-  const { amount, date, description, id, type, category_name } = transaction;
+  const { amount, date, description, id, type_name, category_name } = transaction;
+  const typeNameLower = type_name.toLowerCase();
 
   const { setEditTransaction, deleteTransaction } = useAppContext();
 
   const formattedDate = DateTime.fromISO(date).toFormat('dd LLL yyyy');
-  const typeString = type === '0' ? 'ingreso' : 'egreso';
   return (
     <Wrapper>
       <header>
-        <div className="main-icon">{typeString.charAt(0)}</div>
+        <div className="main-icon">{type_name.charAt(0)}</div>
         <div className="info">
           <h5>{description}</h5>
         </div>
@@ -29,7 +29,7 @@ function Transaction({ transaction }) {
           <TransactionInfo icon={<MdCategory />} text={category_name} />
           <TransactionInfo icon={<FaMoneyBillWaveAlt />} text={`$${amount}`} />
           <TransactionInfo icon={<FaCalendarAlt />} text={formattedDate} />
-          <div className={`type ${typeString}`}>{typeString}</div>
+          <div className={`type ${typeNameLower}`}>{type_name}</div>
         </div>
         <footer>
           <div className="actions">
