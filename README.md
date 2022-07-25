@@ -1,70 +1,184 @@
-# Getting Started with Create React App
+<div align="center">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  <img src="src/assets/images/logo.svg" alt="logo" width="200" height="auto" />
+  <h1>Tus Finanzas - Alkemy Fullstack Challenge - Client</h1>
+  
+  <p>
+    Client side of the Alkemy Fullstack Challenge made with React.
+  </p>
+  
+  
+<!-- Badges -->
+<p>
+  <a href="https://github.com/DamianCabrio/alkemy-fullstack-project-frontendgraphs/contributors" target="_blank">
+    <img src="https://img.shields.io/github/contributors/DamianCabrio/alkemy-fullstack-project-frontend" alt="contributors" />
+  </a>
+  <a href="">
+    <img src="https://img.shields.io/github/last-commit/DamianCabrio/alkemy-fullstack-project-frontend" alt="last update" target="_blank" />
+  </a>
+</p>
+   
+<h4>
+    <a href="https://tus-finanzas-client.herokuapp.com" target="_blank">View Demo</a>
+  <span> · </span>
+    <a href="https://github.com/DamianCabrio/alkemy-fullstack-project-backend" target="_blank">Backend Repo</a>
+  <span> · </span>
+    <a href="https://drive.google.com/file/d/1xR92xRBg8uQDbdajch0sVb9xa4VtHXtU/view" target="_blank">Assignment</a>
+  <span> · </span>
+    <a href="https://www.alkemy.org/" target="_blank">Alkemy</a>
+  </h4>
+</div>
 
-## Available Scripts
+<br />
 
-In the project directory, you can run:
+<!-- Table of Contents -->
 
-### `npm start`
+# 📔 Table of Contents
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [About the Project](#🌟-about-the-project)
+  - [Tech Stack](#👾-tech-stack)
+  - [Features](#🎯-features)
+  - [Environment Variables](#🔑-environment-variables)
+- [Getting Started](#🧰-getting-started)
+  - [Prerequisites](#‼-prerequisites)
+  - [Run Locally](#🏃-run-locally)
+  - [Deployment](#🚩-deployment)
+- [Contact](#👋-contact)
+- [Acknowledgements](#💎-acknowledgements)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<!-- About the Project -->
 
-### `npm test`
+## 🌟 About the Project
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<div align="center"> 
+  <img src="https://i.ibb.co/9skyV9j/imagen.png" alt="screenshot" />
+</div>
 
-### `npm run build`
+<!-- TechStack -->
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 👾 Tech Stack of the Project
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<details>
+  <summary>Client</summary>
+  <ul>
+    <li><a href="https://axios-http.com/" target="_blank">Axios</a></li>
+    <li><a href="https://moment.github.io/luxon/#/" target="_blank">Luxon</a></li>
+    <li><a href="https://necolas.github.io/normalize.css/" target="_blank">normalize.css</a></li>
+    <li><a href="https://reactjs.org/" target="_blank">React.js</a></li>
+    <li><a href="https://reactrouter.com/" target="_blank">React Router</a></li>
+    <li><a href="https://recharts.org/en-US/" target="_blank">Recharts</a></li>
+    <li><a href="https://styled-components.com/" target="_blank">Styled components</a></li>
+  </ul>
+</details>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<details>
+  <summary>Server</summary>
+  <ul>
+    <li><a href="https://expressjs.com/" target="_blank">Express.js</a></li>
+    <li><a href="https://knexjs.org/" target="_blank">Knex.js</a></li>
+  </ul>
+</details>
 
-### `npm run eject`
+<details>
+<summary>Database</summary>
+  <ul>
+    <li><a href="https://www.mysql.com/" target="_blank">MySQL</a></li>
+  </ul>
+</details>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<details>
+<summary>DevOps</summary>
+  <ul>
+    <li><a href="https://www.docker.com/" target="_blank">Docker</a></li>
+  </ul>
+</details>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<!-- Features -->
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 🎯 Features
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- [👩‍🦰] Account registration and login
+- [📊] Graphs and stats
+- [💰] Transactions tracking, with different types and categories
+- [📝] Transactions adding, editing and deleting
+- [🔎] Transactions filtering and sorting
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<!-- Env Variables -->
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 🔑 Environment Variables
 
-### Code Splitting
+To run this project, you will need to copy the file `.env.example` to `.env` and fill in the values.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+`REACT_APP_SERVER_URL`: The URL of the server.
 
-### Analyzing the Bundle Size
+<!-- Getting Started -->
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🧰 Getting Started
 
-### Making a Progressive Web App
+<!-- Prerequisites -->
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### ‼ Prerequisites
 
-### Advanced Configuration
+This project uses npm as package manager, so you need to have it installed.
+You can get it at <a href="https://www.npmjs.com/" target="_blank">npmjs.com</a>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+<!-- Run Locally -->
 
-### Deployment
+### 🏃 Run Locally
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Clone the project
 
-### `npm run build` fails to minify
+```bash
+  git clone https://github.com/DamianCabrio/alkemy-fullstack-project-frontend.git
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Go to the project directory
+
+```bash
+  cd alkemy-fullstack-project-frontend
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm start
+```
+
+<!-- Deployment -->
+
+### 🚩 Deployment
+
+The deployment of the app was made with heroku.
+
+This repository is connected to the heroku app `tus-finanzas-client`.
+You can visit it at <a href="https://tus-finanzas-client.herokuapp.com" target="_blank">tus-finanzas-client.herokuapp.com</a>
+
+<!-- Contact -->
+
+## 👋 Contact
+
+<a href="https://github.com/DamianCabrio/alkemy-fullstack-project-frontend/graphs/contributors" target="_blank">
+  <img src="https://contrib.rocks/image?repo=DamianCabrio/alkemy-fullstack-project-frontend" />
+</a>
+
+Damián Cabrio - [LinkedIn](https://www.linkedin.com/in/dami%C3%A1n-cabrio-4542801b9/) - soy@damiancabrio.com.ar
+
+<!-- Acknowledgments -->
+
+## 💎 Acknowledgements
+
+- [Axios](https://axios-http.com/)
+- [Create react app](https://create-react-app.dev/)
+- [Luxon](https://moment.github.io/luxon/#/)
+- [normalize.css](https://necolas.github.io/normalize.css/)
+- [React.js](https://reactjs.org/)
+- [React Router](https://reactrouter.com/)
+- [Recharts](https://recharts.org/en-US/)
+- [Styled components](https://styled-components.com/)
