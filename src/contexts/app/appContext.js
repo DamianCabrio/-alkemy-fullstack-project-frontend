@@ -45,7 +45,7 @@ const searchTransactionsInitialState = {
   searchType: 'all',
   searchCategory: 'all',
   sort: 'desc',
-}
+};
 
 const initialState = {
   isLoading: false,
@@ -308,7 +308,10 @@ const AppProvider = ({ children }) => {
   };
 
   const getTransactions = useCallback(async () => {
-    let url = `/transactions`;
+    let url = `/transactions?&type=${state.searchType}&category=${state.searchCategory}&sort=${state.sort}`;
+    if (state.search && state.search.trim() !== '') {
+      url = `${url}&search=${state.search}`;
+    }
     dispatch({
       type: SETUP_BEGIN,
     });
@@ -331,7 +334,14 @@ const AppProvider = ({ children }) => {
         payload: { message: error.response.data.message },
       });
     }
-  }, [client, clearAlert]);
+  }, [
+    client,
+    clearAlert,
+    state.search,
+    state.searchType,
+    state.searchCategory,
+    state.sort,
+  ]);
 
   const setEditTransaction = (transactionId) => {
     dispatch({
@@ -421,7 +431,7 @@ const AppProvider = ({ children }) => {
     dispatch({
       type: CLEAR_FILTERS,
     });
-  }
+  };
 
   return (
     <AppContext.Provider

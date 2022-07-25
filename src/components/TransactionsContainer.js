@@ -13,11 +13,15 @@ function TransactionsContainer() {
     currentPage,
     totalTransactions,
     showAlert,
+    search,
+    searchType,
+    searchCategory,
+    sort,
   } = useAppContext();
 
   useEffect(() => {
     getTransactions();
-  }, [getTransactions]);
+  }, [getTransactions, search, searchType, searchCategory, sort]);
 
   if (isLoading) {
     return <Loading center />;
