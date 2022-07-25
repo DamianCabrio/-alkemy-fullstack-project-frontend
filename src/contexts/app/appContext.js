@@ -53,7 +53,11 @@ const initialState = {
 
   ...transactionInitialState,
 
-  transactionStats: {},
+  transactionStats: {
+    groupByType: [],
+    groupByCategory: [],
+    groupByLastSixMonths: [],
+  },
 
   categoryOptions: [],
   transactionTypes: [],

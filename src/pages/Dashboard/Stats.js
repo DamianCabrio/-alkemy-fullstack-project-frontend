@@ -19,7 +19,7 @@ function Stats() {
   return (
     <>
       <StatsContainer />
-      {transactionStats?.monthlyTransactions.length > 0 && <ChartsContainer />}
+      {transactionStats?.groupByLastSixMonths.length > 0 && <ChartsContainer />}
     </>
   );
 }
