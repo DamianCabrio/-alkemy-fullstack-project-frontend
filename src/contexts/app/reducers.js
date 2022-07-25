@@ -1,4 +1,8 @@
-import { initialState, transactionInitialState, searchTransactionsInitialState } from './appContext';
+import {
+  initialState,
+  transactionInitialState,
+  searchTransactionsInitialState,
+} from './appContext';
 
 import {
   DISPLAY_ALERT,
@@ -88,6 +92,7 @@ const reducer = (state = {}, action) => {
       return {
         ...state,
         [action.payload.field]: action.payload.value,
+        currentPage: 1,
       };
     case CLEAR_TRANSACTION_FORM_VALUES:
       return {

@@ -309,7 +309,7 @@ const AppProvider = ({ children }) => {
   };
 
   const getTransactions = useCallback(async () => {
-    let url = `/transactions?&type=${state.searchType}&category=${state.searchCategory}&sort=${state.sort}`;
+    let url = `/transactions?page=${state.currentPage}&type=${state.searchType}&category=${state.searchCategory}&sort=${state.sort}`;
     if (state.search && state.search.trim() !== '') {
       url = `${url}&search=${state.search}`;
     }
@@ -342,6 +342,7 @@ const AppProvider = ({ children }) => {
     state.searchType,
     state.searchCategory,
     state.sort,
+    state.currentPage,
   ]);
 
   const setEditTransaction = (transactionId) => {

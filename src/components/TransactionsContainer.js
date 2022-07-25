@@ -23,7 +23,7 @@ function TransactionsContainer() {
 
   useEffect(() => {
     getTransactions();
-  }, [getTransactions, search, searchType, searchCategory, sort]);
+  }, [getTransactions, search, searchType, searchCategory, sort, currentPage]);
 
   if (isLoading) {
     return <Loading center />;
