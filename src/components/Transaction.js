@@ -15,7 +15,7 @@ function Transaction({ transaction }) {
 
   const { setEditTransaction, deleteTransaction } = useAppContext();
 
-  const formattedDate = DateTime.fromISO(date).toFormat('dd LLL yyyy');
+  const formattedDate = DateTime.fromISO(date).toLocaleString(DateTime.DATE_SHORT);
   return (
     <Wrapper>
       <header>
