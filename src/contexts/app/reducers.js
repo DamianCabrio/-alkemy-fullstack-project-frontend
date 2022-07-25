@@ -1,4 +1,4 @@
-import { initialState, transactionInitialState } from './appContext';
+import { initialState, transactionInitialState, searchTransactionsInitialState } from './appContext';
 
 import {
   DISPLAY_ALERT,
@@ -16,6 +16,7 @@ import {
   FETCH_TRANSACTIONS_SUCCESS,
   SET_EDIT_TRANSACTION,
   FETCH_TRANSACTION_STATS_SUCCESS,
+  CLEAR_FILTERS,
 } from './actions';
 
 const reducer = (state = {}, action) => {
@@ -130,6 +131,12 @@ const reducer = (state = {}, action) => {
         ...state,
         isLoading: false,
         transactionStats: action.payload,
+      };
+    case CLEAR_FILTERS:
+      return {
+        ...state,
+        ...searchTransactionsInitialState,
+        isLoading: false,
       };
     default:
       throw new Error(`No such action: ${action.type}`);

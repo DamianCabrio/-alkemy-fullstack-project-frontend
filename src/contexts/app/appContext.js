@@ -26,6 +26,7 @@ import {
   FETCH_TRANSACTIONS_SUCCESS,
   SET_EDIT_TRANSACTION,
   FETCH_TRANSACTION_STATS_SUCCESS,
+  CLEAR_FILTERS,
 } from './actions';
 
 const token = localStorage.getItem('token');
@@ -417,7 +418,9 @@ const AppProvider = ({ children }) => {
   }, [client, clearAlert]);
 
   const clearFilters = () => {
-    console.log('clear filters');
+    dispatch({
+      type: CLEAR_FILTERS,
+    });
   }
 
   return (
