@@ -10,7 +10,7 @@
   
 <!-- Badges -->
 <p>
-  <a href="https://github.com/DamianCabrio/alkemy-fullstack-project-frontendgraphs/contributors" target="_blank">
+  <a href="https://github.com/DamianCabrio/alkemy-fullstack-project-frontend/graphs/contributors" target="_blank">
     <img src="https://img.shields.io/github/contributors/DamianCabrio/alkemy-fullstack-project-frontend" alt="contributors" />
   </a>
   <a href="">
