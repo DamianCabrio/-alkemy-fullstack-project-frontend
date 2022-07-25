@@ -25,6 +25,7 @@ import {
   CREATE_TRANSACTION_SUCCESS,
   FETCH_TRANSACTIONS_SUCCESS,
   SET_EDIT_TRANSACTION,
+  FETCH_TRANSACTION_STATS_SUCCESS,
 } from './actions';
 
 const token = localStorage.getItem('token');
@@ -51,6 +52,8 @@ const initialState = {
   editTransactionId: null,
 
   ...transactionInitialState,
+
+  transactionStats: {},
 
   categoryOptions: [],
   transactionTypes: [],
@@ -386,6 +389,25 @@ const AppProvider = ({ children }) => {
     }
   };
 
+  const fetchTransactionStats = useCallback(async () => {
+    dispatch({
+      type: SETUP_BEGIN,
+    });
+    try {
+      const { data } = await client.get('/transactions/stats');
+      dispatch({
+        type: FETCH_TRANSACTION_STATS_SUCCESS,
+        payload: data.result,
+      });
+      clearAlert();
+    } catch (error) {
+      dispatch({
+        type: SETUP_FAILURE,
+        payload: { message: error.response.data.message },
+      });
+    }
+  }, [client, clearAlert]);
+
   return (
     <AppContext.Provider
       value={{
@@ -406,6 +428,7 @@ const AppProvider = ({ children }) => {
         setEditTransaction,
         deleteTransaction,
         editTransaction,
+        fetchTransactionStats,
       }}
     >
       {children}

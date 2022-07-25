@@ -15,6 +15,7 @@ import {
   CREATE_TRANSACTION_SUCCESS,
   FETCH_TRANSACTIONS_SUCCESS,
   SET_EDIT_TRANSACTION,
+  FETCH_TRANSACTION_STATS_SUCCESS,
 } from './actions';
 
 const reducer = (state = {}, action) => {
@@ -123,6 +124,12 @@ const reducer = (state = {}, action) => {
         transactionType: transaction.type,
         transactionDate: transaction.date.split('T')[0],
         transactionCategory: transaction.category_id,
+      };
+    case FETCH_TRANSACTION_STATS_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        transactionStats: action.payload,
       };
     default:
       throw new Error(`No such action: ${action.type}`);
