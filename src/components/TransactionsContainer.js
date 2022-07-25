@@ -23,7 +23,7 @@ function TransactionsContainer() {
     return <Loading center />;
   }
 
-  if (transactions.length === 0) {
+  if (transactions.length === 0 && !isLoading) {
     return (
       <Wrapper>
         <h2>No hay operaciones para mostrar</h2>
