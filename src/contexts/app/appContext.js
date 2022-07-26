@@ -36,7 +36,7 @@ const user = localStorage.getItem('user');
 const transactionInitialState = {
   transactionDescription: '',
   transactionAmount: 1,
-  transactionType: 0,
+  transactionType: 1,
   transactionDate: new Date().toISOString().split('T')[0],
   transactionCategory: 1,
 };
