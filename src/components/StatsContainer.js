@@ -8,14 +8,17 @@ function StatsContainer() {
 
   const { groupByTypeStyles, groupByCategoryStyles } = statsTypesStyles;
 
-  if (!transactionStats?.groupByType && !transactionStats?.groupByCategory) {
+  if (
+    (!transactionStats?.groupByType || transactionStats?.groupByType.length === 0) &&
+    (!transactionStats?.groupByCategory || transactionStats?.groupByCategory.length === 0)
+  ) {
     return (
       <div className="container">
         <h3>Todavía no agregó operaciones, no hay estadísticas que mostrar</h3>
       </div>
     );
   }
-  
+
   return (
     <Wrapper>
       {transactionStats?.groupByType.map((stat) => (
