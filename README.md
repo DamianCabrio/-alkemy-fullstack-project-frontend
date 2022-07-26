@@ -36,7 +36,7 @@
 # 📔 Table of Contents
 
 - [About the Project](#🌟-about-the-project)
-  - [Tech Stack](#👾-tech-stack)
+  - [Tech Stack](#👾-tech-stack-of-the-project)
   - [Features](#🎯-features)
   - [Environment Variables](#🔑-environment-variables)
 - [Getting Started](#🧰-getting-started)
@@ -121,7 +121,7 @@ To run this project, you will need to copy the file `.env.example` to `.env` and
 ### ‼ Prerequisites
 
 This project uses npm as package manager, so you need to have it installed.
-You can get it at <a href="https://www.npmjs.com/" target="_blank">npmjs.com</a>
+You can get it at <a href="https://nodejs.org/en/" target="_blank">nodejs.org</a>
 
 <!-- Run Locally -->
 
