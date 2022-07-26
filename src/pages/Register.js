@@ -35,7 +35,7 @@ function Register() {
     clearAlert();
     const { name, surname, email, password, isLogin, confirmPassword } = values;
 
-    if (!email || !password || (!isLogin && !name && !surname)) {
+    if (!email || !password || (!isLogin && (!name || !surname))) {
       displayAlert(
         'Por favor llene todos los campos antes de enviar.',
         'danger'
