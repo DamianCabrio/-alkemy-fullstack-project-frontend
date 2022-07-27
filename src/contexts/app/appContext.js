@@ -91,7 +91,6 @@ const AppProvider = ({ children }) => {
     () =>
       axios.create({
         baseURL: process.env.REACT_APP_SERVER_URL + '/api/v1',
-        timeout: 5000,
         headers: {
           Authorization: `Bearer ${state.token}`,
           'Content-Type': 'application/json',
